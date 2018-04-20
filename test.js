@@ -1,2 +1,0 @@
-var alablala
-trin talain

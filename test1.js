@@ -1,2 +1,0 @@
-const uspeh = 100; 
-
