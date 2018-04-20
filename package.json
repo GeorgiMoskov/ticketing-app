@@ -1,0 +1,22 @@
+{
+  "name": "ticketing-app",
+  "version": "1.0.0",
+  "description": "ticketing app project made by Georgi Moskov and Slavka Todorova",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/GeorgiMoskov/ticketing-app.git"
+  },
+  "author": "Georgi Moskov and Slavka Todorova",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/GeorgiMoskov/ticketing-app/issues"
+  },
+  "homepage": "https://github.com/GeorgiMoskov/ticketing-app#readme",
+  "dependencies": {
+    "express": "^4.16.3"
+  }
+}
