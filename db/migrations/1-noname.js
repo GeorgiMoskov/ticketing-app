@@ -5,43 +5,158 @@ var Sequelize = require('sequelize');
 /**
  * Actions summary:
  *
- * createTable "People", deps: []
+ * createTable "Privileges", deps: []
+ * createTable "Roles", deps: []
+ * createTable "Users", deps: [Roles]
+ * createTable "role_privilege", deps: [Roles, Privileges]
  *
  **/
 
 var info = {
     "revision": 1,
     "name": "noname",
-    "created": "2018-04-20T18:25:48.457Z",
+    "created": "2018-04-22T09:31:34.060Z",
     "comment": ""
 };
 
 var migrationCommands = [{
-    fn: "createTable",
-    params: [
-        "People",
-        {
-            "id": {
-                "type": Sequelize.INTEGER,
-                "autoIncrement": true,
-                "primaryKey": true,
-                "allowNull": false
+        fn: "createTable",
+        params: [
+            "Privileges",
+            {
+                "id": {
+                    "type": Sequelize.INTEGER,
+                    "autoIncrement": true,
+                    "primaryKey": true,
+                    "allowNull": false
+                },
+                "name": {
+                    "type": Sequelize.STRING,
+                    "allowNull": false
+                },
+                "createdAt": {
+                    "type": Sequelize.DATE,
+                    "allowNull": false
+                },
+                "updatedAt": {
+                    "type": Sequelize.DATE,
+                    "allowNull": false
+                },
+                "deletedAt": {
+                    "type": Sequelize.DATE
+                }
             },
-            "name": {
-                "type": Sequelize.STRING
+            {}
+        ]
+    },
+    {
+        fn: "createTable",
+        params: [
+            "Roles",
+            {
+                "id": {
+                    "type": Sequelize.INTEGER,
+                    "autoIncrement": true,
+                    "primaryKey": true,
+                    "allowNull": false
+                },
+                "name": {
+                    "type": Sequelize.STRING,
+                    "allowNull": false
+                },
+                "createdAt": {
+                    "type": Sequelize.DATE,
+                    "allowNull": false
+                },
+                "updatedAt": {
+                    "type": Sequelize.DATE,
+                    "allowNull": false
+                },
+                "deletedAt": {
+                    "type": Sequelize.DATE
+                }
             },
-            "createdAt": {
-                "type": Sequelize.DATE,
-                "allowNull": false
+            {}
+        ]
+    },
+    {
+        fn: "createTable",
+        params: [
+            "Users",
+            {
+                "id": {
+                    "type": Sequelize.INTEGER,
+                    "autoIncrement": true,
+                    "primaryKey": true,
+                    "allowNull": false
+                },
+                "firstName": {
+                    "type": Sequelize.STRING,
+                    "allowNull": false
+                },
+                "createdAt": {
+                    "type": Sequelize.DATE,
+                    "allowNull": false
+                },
+                "updatedAt": {
+                    "type": Sequelize.DATE,
+                    "allowNull": false
+                },
+                "deletedAt": {
+                    "type": Sequelize.DATE
+                },
+                "RoleId": {
+                    "type": Sequelize.INTEGER,
+                    "onUpdate": "CASCADE",
+                    "onDelete": "CASCADE",
+                    "references": {
+                        "model": "Roles",
+                        "key": "id"
+                    },
+                    "allowNull": false
+                }
             },
-            "updatedAt": {
-                "type": Sequelize.DATE,
-                "allowNull": false
-            }
-        },
-        {}
-    ]
-}];
+            {}
+        ]
+    },
+    {
+        fn: "createTable",
+        params: [
+            "role_privilege",
+            {
+                "createdAt": {
+                    "type": Sequelize.DATE,
+                    "allowNull": false
+                },
+                "updatedAt": {
+                    "type": Sequelize.DATE,
+                    "allowNull": false
+                },
+                "role_id": {
+                    "type": Sequelize.INTEGER,
+                    "onUpdate": "CASCADE",
+                    "onDelete": "CASCADE",
+                    "references": {
+                        "model": "Roles",
+                        "key": "id"
+                    },
+                    "primaryKey": true
+                },
+                "privilege_id": {
+                    "type": Sequelize.INTEGER,
+                    "onUpdate": "CASCADE",
+                    "onDelete": "CASCADE",
+                    "references": {
+                        "model": "Privileges",
+                        "key": "id"
+                    },
+                    "primaryKey": true
+                }
+            },
+            {}
+        ]
+    }
+];
 
 module.exports = {
     pos: 0,
