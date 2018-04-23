@@ -1,5 +1,107 @@
 {
     "tables": {
+        "Importance": {
+            "tableName": "Importance",
+            "schema": {
+                "id": {
+                    "allowNull": false,
+                    "primaryKey": true,
+                    "autoIncrement": true,
+                    "seqType": "Sequelize.INTEGER"
+                },
+                "name": {
+                    "allowNull": false,
+                    "seqType": "Sequelize.STRING"
+                },
+                "createdAt": {
+                    "allowNull": false,
+                    "seqType": "Sequelize.DATE"
+                },
+                "updatedAt": {
+                    "allowNull": false,
+                    "seqType": "Sequelize.DATE"
+                },
+                "deletedAt": {
+                    "seqType": "Sequelize.DATE"
+                }
+            },
+            "indexes": []
+        },
+        "Logs": {
+            "tableName": "Logs",
+            "schema": {
+                "id": {
+                    "allowNull": false,
+                    "primaryKey": true,
+                    "autoIncrement": true,
+                    "seqType": "Sequelize.INTEGER"
+                },
+                "description": {
+                    "allowNull": false,
+                    "seqType": "Sequelize.STRING"
+                },
+                "createdAt": {
+                    "allowNull": false,
+                    "seqType": "Sequelize.DATE"
+                },
+                "updatedAt": {
+                    "allowNull": false,
+                    "seqType": "Sequelize.DATE"
+                },
+                "UserId": {
+                    "allowNull": false,
+                    "references": {
+                        "model": "Users",
+                        "key": "id"
+                    },
+                    "onDelete": "CASCADE",
+                    "onUpdate": "CASCADE",
+                    "seqType": "Sequelize.INTEGER"
+                }
+            },
+            "indexes": []
+        },
+        "Messages": {
+            "tableName": "Messages",
+            "schema": {
+                "id": {
+                    "allowNull": false,
+                    "primaryKey": true,
+                    "autoIncrement": true,
+                    "seqType": "Sequelize.INTEGER"
+                },
+                "text": {
+                    "allowNull": false,
+                    "seqType": "Sequelize.STRING"
+                },
+                "isRead": {
+                    "allowNull": false,
+                    "seqType": "Sequelize.BOOLEAN"
+                },
+                "createdAt": {
+                    "allowNull": false,
+                    "seqType": "Sequelize.DATE"
+                },
+                "updatedAt": {
+                    "allowNull": false,
+                    "seqType": "Sequelize.DATE"
+                },
+                "deletedAt": {
+                    "seqType": "Sequelize.DATE"
+                },
+                "UserId": {
+                    "allowNull": false,
+                    "references": {
+                        "model": "Users",
+                        "key": "id"
+                    },
+                    "onDelete": "CASCADE",
+                    "onUpdate": "CASCADE",
+                    "seqType": "Sequelize.INTEGER"
+                }
+            },
+            "indexes": []
+        },
         "Privileges": {
             "tableName": "Privileges",
             "schema": {
@@ -54,6 +156,165 @@
             },
             "indexes": []
         },
+        "Statuses": {
+            "tableName": "Statuses",
+            "schema": {
+                "id": {
+                    "allowNull": false,
+                    "primaryKey": true,
+                    "autoIncrement": true,
+                    "seqType": "Sequelize.INTEGER"
+                },
+                "name": {
+                    "allowNull": false,
+                    "seqType": "Sequelize.STRING"
+                },
+                "createdAt": {
+                    "allowNull": false,
+                    "seqType": "Sequelize.DATE"
+                },
+                "updatedAt": {
+                    "allowNull": false,
+                    "seqType": "Sequelize.DATE"
+                },
+                "deletedAt": {
+                    "seqType": "Sequelize.DATE"
+                }
+            },
+            "indexes": []
+        },
+        "Teams": {
+            "tableName": "Teams",
+            "schema": {
+                "id": {
+                    "allowNull": false,
+                    "primaryKey": true,
+                    "autoIncrement": true,
+                    "seqType": "Sequelize.INTEGER"
+                },
+                "name": {
+                    "allowNull": false,
+                    "seqType": "Sequelize.STRING"
+                },
+                "description": {
+                    "allowNull": true,
+                    "seqType": "Sequelize.STRING"
+                },
+                "createdAt": {
+                    "allowNull": false,
+                    "seqType": "Sequelize.DATE"
+                },
+                "updatedAt": {
+                    "allowNull": false,
+                    "seqType": "Sequelize.DATE"
+                },
+                "deletedAt": {
+                    "seqType": "Sequelize.DATE"
+                },
+                "teamLeaderId": {
+                    "allowNull": true,
+                    "references": {
+                        "model": "Users",
+                        "key": "id"
+                    },
+                    "onDelete": "CASCADE",
+                    "onUpdate": "CASCADE",
+                    "seqType": "Sequelize.INTEGER"
+                }
+            },
+            "indexes": []
+        },
+        "Tickets": {
+            "tableName": "Tickets",
+            "schema": {
+                "id": {
+                    "allowNull": false,
+                    "primaryKey": true,
+                    "autoIncrement": true,
+                    "seqType": "Sequelize.INTEGER"
+                },
+                "description": {
+                    "allowNull": false,
+                    "seqType": "Sequelize.STRING"
+                },
+                "deadLine": {
+                    "allowNull": false,
+                    "seqType": "Sequelize.DATE"
+                },
+                "createdAt": {
+                    "allowNull": false,
+                    "seqType": "Sequelize.DATE"
+                },
+                "updatedAt": {
+                    "allowNull": false,
+                    "seqType": "Sequelize.DATE"
+                },
+                "deletedAt": {
+                    "seqType": "Sequelize.DATE"
+                },
+                "requesterId": {
+                    "allowNull": false,
+                    "references": {
+                        "model": "Users",
+                        "key": "id"
+                    },
+                    "onDelete": "CASCADE",
+                    "onUpdate": "CASCADE",
+                    "seqType": "Sequelize.INTEGER"
+                },
+                "assignToId": {
+                    "allowNull": true,
+                    "references": {
+                        "model": "Users",
+                        "key": "id"
+                    },
+                    "onDelete": "CASCADE",
+                    "onUpdate": "CASCADE",
+                    "seqType": "Sequelize.INTEGER"
+                },
+                "escalationContactId": {
+                    "allowNull": false,
+                    "references": {
+                        "model": "Users",
+                        "key": "id"
+                    },
+                    "onDelete": "CASCADE",
+                    "onUpdate": "CASCADE",
+                    "seqType": "Sequelize.INTEGER"
+                },
+                "teamId": {
+                    "allowNull": true,
+                    "references": {
+                        "model": "Teams",
+                        "key": "id"
+                    },
+                    "onDelete": "CASCADE",
+                    "onUpdate": "CASCADE",
+                    "seqType": "Sequelize.INTEGER"
+                },
+                "statusId": {
+                    "allowNull": false,
+                    "references": {
+                        "model": "Statuses",
+                        "key": "id"
+                    },
+                    "onDelete": "CASCADE",
+                    "onUpdate": "CASCADE",
+                    "seqType": "Sequelize.INTEGER"
+                },
+                "importanceId": {
+                    "allowNull": false,
+                    "references": {
+                        "model": "Importance",
+                        "key": "id"
+                    },
+                    "onDelete": "CASCADE",
+                    "onUpdate": "CASCADE",
+                    "seqType": "Sequelize.INTEGER"
+                }
+            },
+            "indexes": []
+        },
         "Users": {
             "tableName": "Users",
             "schema": {
@@ -79,7 +340,7 @@
                     "seqType": "Sequelize.DATE"
                 },
                 "RoleId": {
-                    "allowNull": true,
+                    "allowNull": false,
                     "references": {
                         "model": "Roles",
                         "key": "id"
@@ -126,5 +387,5 @@
             "indexes": []
         }
     },
-    "revision": 2
+    "revision": 4
 }

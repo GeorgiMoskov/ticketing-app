@@ -14,7 +14,7 @@ var Sequelize = require('sequelize');
 
 var info = {
     "revision": 1,
-    "name": "noname",
+    "name": "create-User-Roles-and-Privileges-models",
     "created": "2018-04-22T09:31:34.060Z",
     "comment": ""
 };
