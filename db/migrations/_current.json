@@ -79,7 +79,7 @@
                     "seqType": "Sequelize.DATE"
                 },
                 "RoleId": {
-                    "allowNull": true,
+                    "allowNull": false,
                     "references": {
                         "model": "Roles",
                         "key": "id"
@@ -126,5 +126,5 @@
             "indexes": []
         }
     },
-    "revision": 2
+    "revision": 1
 }
