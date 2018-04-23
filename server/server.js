@@ -43,5 +43,5 @@ const solveAll = async () => {
     const userById = await userData.getUserById(createdUser.id);
 
 };
-
+ 
 Promise.resolve(solveAll());
