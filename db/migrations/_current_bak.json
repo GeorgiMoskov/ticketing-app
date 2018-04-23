@@ -27,81 +27,6 @@
             },
             "indexes": []
         },
-        "Logs": {
-            "tableName": "Logs",
-            "schema": {
-                "id": {
-                    "allowNull": false,
-                    "primaryKey": true,
-                    "autoIncrement": true,
-                    "seqType": "Sequelize.INTEGER"
-                },
-                "description": {
-                    "allowNull": false,
-                    "seqType": "Sequelize.STRING"
-                },
-                "createdAt": {
-                    "allowNull": false,
-                    "seqType": "Sequelize.DATE"
-                },
-                "updatedAt": {
-                    "allowNull": false,
-                    "seqType": "Sequelize.DATE"
-                },
-                "UserId": {
-                    "allowNull": false,
-                    "references": {
-                        "model": "Users",
-                        "key": "id"
-                    },
-                    "onDelete": "CASCADE",
-                    "onUpdate": "CASCADE",
-                    "seqType": "Sequelize.INTEGER"
-                }
-            },
-            "indexes": []
-        },
-        "Messages": {
-            "tableName": "Messages",
-            "schema": {
-                "id": {
-                    "allowNull": false,
-                    "primaryKey": true,
-                    "autoIncrement": true,
-                    "seqType": "Sequelize.INTEGER"
-                },
-                "text": {
-                    "allowNull": false,
-                    "seqType": "Sequelize.STRING"
-                },
-                "isRead": {
-                    "allowNull": false,
-                    "seqType": "Sequelize.BOOLEAN"
-                },
-                "createdAt": {
-                    "allowNull": false,
-                    "seqType": "Sequelize.DATE"
-                },
-                "updatedAt": {
-                    "allowNull": false,
-                    "seqType": "Sequelize.DATE"
-                },
-                "deletedAt": {
-                    "seqType": "Sequelize.DATE"
-                },
-                "UserId": {
-                    "allowNull": false,
-                    "references": {
-                        "model": "Users",
-                        "key": "id"
-                    },
-                    "onDelete": "CASCADE",
-                    "onUpdate": "CASCADE",
-                    "seqType": "Sequelize.INTEGER"
-                }
-            },
-            "indexes": []
-        },
         "Privileges": {
             "tableName": "Privileges",
             "schema": {
@@ -387,9 +312,5 @@
             "indexes": []
         }
     },
-<<<<<<< HEAD
-    "revision": 1
-=======
-    "revision": 4
->>>>>>> 4ed6f6b285833acd4e12149290c2a9c0440e3bc0
+    "revision": 3
 }

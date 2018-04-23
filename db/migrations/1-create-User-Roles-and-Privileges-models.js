@@ -14,8 +14,13 @@ var Sequelize = require('sequelize');
 
 var info = {
     "revision": 1,
+<<<<<<< HEAD:db/migrations/1-noname.js
     "name": "noname",
     "created": "2018-04-23T17:32:51.553Z",
+=======
+    "name": "create-User-Roles-and-Privileges-models",
+    "created": "2018-04-22T09:31:34.060Z",
+>>>>>>> 4ed6f6b285833acd4e12149290c2a9c0440e3bc0:db/migrations/1-create-User-Roles-and-Privileges-models.js
     "comment": ""
 };
 

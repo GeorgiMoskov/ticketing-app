@@ -1,26 +1,26 @@
 'use strict';
 module.exports = (sequelize, DataTypes) => {
-    var User = sequelize.define('User', {
-        firstName: {
+    var Log = sequelize.define('Log', {
+        description: {
             type: DataTypes.STRING,
             allowNull: false
         },
 
-    }, {
-        paranoid: true
-    });
+    }, {});
 
-    User.associate = function (models) {
+    Log.associate = function (models) {
         // associations can be defined here
-        const { Role } = models;
+        const {
+            User,
+        } = models;
 
-        User.belongsTo(Role, {
+        Log.belongsTo(User, {
             foreignKey: {
                 allowNull: false,
             },
             onDelete: 'CASCADE',
-        })
+        });
 
     };
-    return User;
+    return Log;
 };
