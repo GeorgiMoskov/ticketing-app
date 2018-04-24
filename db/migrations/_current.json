@@ -333,6 +333,15 @@
                     "allowNull": false,
                     "seqType": "Sequelize.STRING"
                 },
+                "phone": {
+                    "seqType": "Sequelize.STRING"
+                },
+                "imgUrl": {
+                    "seqType": "Sequelize.STRING"
+                },
+                "description": {
+                    "seqType": "Sequelize.STRING"
+                },
                 "createdAt": {
                     "allowNull": false,
                     "seqType": "Sequelize.DATE"
@@ -392,5 +401,5 @@
             "indexes": []
         }
     },
-    "revision": 5
+    "revision": 6
 }
