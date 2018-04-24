@@ -328,6 +328,11 @@
                     "allowNull": false,
                     "seqType": "Sequelize.STRING"
                 },
+                "email": {
+                    "unique": true,
+                    "allowNull": false,
+                    "seqType": "Sequelize.STRING"
+                },
                 "createdAt": {
                     "allowNull": false,
                     "seqType": "Sequelize.DATE"
@@ -387,5 +392,5 @@
             "indexes": []
         }
     },
-    "revision": 4
+    "revision": 5
 }
