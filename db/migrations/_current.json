@@ -328,8 +328,25 @@
                     "allowNull": false,
                     "seqType": "Sequelize.STRING"
                 },
+                "lastName": {
+                    "allowNull": false,
+                    "seqType": "Sequelize.STRING"
+                },
                 "email": {
                     "unique": true,
+                    "allowNull": false,
+                    "seqType": "Sequelize.STRING"
+                },
+                "phone": {
+                    "seqType": "Sequelize.STRING"
+                },
+                "imgUrl": {
+                    "seqType": "Sequelize.STRING"
+                },
+                "description": {
+                    "seqType": "Sequelize.STRING"
+                },
+                "password": {
                     "allowNull": false,
                     "seqType": "Sequelize.STRING"
                 },
@@ -392,5 +409,5 @@
             "indexes": []
         }
     },
-    "revision": 5
+    "revision": 1
 }

@@ -2,16 +2,13 @@ const express = require('express');
 const config = require('./config');
 
 const {
-    userData
-} = require('./data_layer/user.data');
+    userService
+} = require('./service_layer/user.service');
 
-const {
-    roleData
-} = require('./data_layer/role.data');
 
-const {
-    privilegeData
-} = require('./data_layer/privilege.data');
+// const {
+//     privilegeData
+// } = require('./data_layer/privilege.data');
 
 const server = express();
 
@@ -19,28 +16,23 @@ require('./config/express').init(server);
 
 server.get('/', (req, res) => res.send('Server is working'));
 
-server.listen(config.port);
+server.listen(config.PORT);
 
 
 const solveAll = async () => {
-    const createdPrivilege = await privilegeData.createPrivilege('privilegiq');
+    let allUsers =await userService.getAllUsers();
+    console.log(allUsers);
+    const createdUser = await userService.createUser({
+        email: 'testMail@abv.bg',
+        password: 'test',
+        firstName: 'JOJO',
+        lastName: 'Kogov',
+        roleId: 2,
+    });
+    console.log(createdUser);
 
-    const allPrivileges = await privilegeData.getAllPrivileges();
-
-    const privilegeById = await privilegeData.getPrivilegeById(createdPrivilege.id);
-
-    const createdRole = await roleData.createRole('role', [createdPrivilege.id]);
-
-    const allRoles = await roleData.getAllRoles();
-    
-    const roleById = await roleData.getRoleById(createdRole.id);
-
-
-    const createdUser = await userData.createUser('user', createdRole.id);
-
-    const allUsers = await userData.getAllUsers();
-
-    const userById = await userData.getUserById(createdUser.id);
+    allUsers =await userService.getAllUsers();
+    console.log(allUsers);
 
 };
  

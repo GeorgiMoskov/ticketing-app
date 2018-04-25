@@ -67,3 +67,22 @@ roleData.getRoleById = async (id) => {
 module.exports = {
     roleData
 };
+
+
+roleData.getRoleByName = async (name) => {
+    const roleSequelize = await Role.findById(id, {
+        include: genericIncludeForRole
+    });
+
+    if(!roleSequelize) {
+        return null;
+    }
+
+    const role = genericRoleSequelizeObjToRoleObj(roleSequelize);
+
+    return role;
+};
+
+module.exports = {
+    roleData
+};
