@@ -5,14 +5,23 @@ class UsersData extends Data {
         super(User, [Role]);
     }
 
+    // can use different templates for different purposes 
     convertSequelizeObjToUserObj(userSequelize) {
         const user = {};
         user.id = userSequelize.id;
         user.email = userSequelize.email;
         user.firstName = userSequelize.firstName;
+        user.lastName = userSequelize.lastName;
+
         user.role = userSequelize.Role.name;
         user.privileges = userSequelize.Role.Privileges.map((privilegeSequelize) => privilegeSequelize.name);
 
+        if (userSequelize.imgUrl) {
+            user.imgUrl = userSequelize.imgUrl;
+        }
+        if (userSequelize.description) {
+            user.description = userSequelize.description;
+        }
         return user;
     }
 
