@@ -15,13 +15,13 @@ class RolesData extends Data {
         return role;
     }
 
-    async create(obj) {
-        // create without privileges... may be shood create a Model
+    async create(obj, associations) {
         const roleSequelize = await this.createElement(obj);
 
         if (!roleSequelize) {
             return null;
         }
+       await roleSequelize.setPrivileges(associations);
 
         const role = await this.getById(roleSequelize.id)
         return role;
@@ -62,12 +62,20 @@ class RolesData extends Data {
         return role;
     }
 
-    // async updatePrivilegeByRole(privilegeId, roleId) {
-    // TODO should chek if pair privilegeId-roleId exists update or create it... 
-    //  
-    // }
+    async updateRolePrivileges(id, associations) {
+        const roleSequelize = await this.getById(id);
 
-    async delete(id) {
+        if (!roleSequelize) {
+            return null;
+        }
+
+            await roleSequelize.updatePrivileges(associations);
+
+        const role = await this.getById(id)
+        return role;
+    }
+
+   async delete(id) {
 
         await this.deleteElement(id);
 
