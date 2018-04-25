@@ -328,6 +328,10 @@
                     "allowNull": false,
                     "seqType": "Sequelize.STRING"
                 },
+                "lastName": {
+                    "allowNull": false,
+                    "seqType": "Sequelize.STRING"
+                },
                 "email": {
                     "unique": true,
                     "allowNull": false,
@@ -340,6 +344,10 @@
                     "seqType": "Sequelize.STRING"
                 },
                 "description": {
+                    "seqType": "Sequelize.STRING"
+                },
+                "password": {
+                    "allowNull": false,
                     "seqType": "Sequelize.STRING"
                 },
                 "createdAt": {
@@ -401,5 +409,5 @@
             "indexes": []
         }
     },
-    "revision": 6
+    "revision": 7
 }
