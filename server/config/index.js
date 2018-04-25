@@ -9,7 +9,7 @@ const config = (() => {
         JWT_SECRET,
         JWT_EXPIRE_TIME
     }
-});
+})();
 
 module.exports = {
     PORT: config.PORT,

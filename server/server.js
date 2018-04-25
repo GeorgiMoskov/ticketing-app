@@ -1,35 +1,33 @@
 const express = require('express');
+const passport = require('passport');
+
 const config = require('./config');
+const { userService } = require('./service_layer/user.service');
+const strategy = require('./config/jwt-strategy');
 
-const {
-    userService
-} = require('./service_layer/user.service');
-
-
-// const {
-//     privilegeData
-// } = require('./data_layer/privilege.data');
 
 const server = express();
-
 require('./config/express').init(server);
 
+passport.use('jwt', strategy.init());
+
+
+server.get('/test', passport.authenticate('jwt', { session: false }), (req, res)=>{
+    console.log('...................');
+    console.log(req.user);
+    res.send({authenticated: true});
+})
+
 server.get('/', (req, res) => res.send('Server is working'));
+
+require('./routes').init(server, passport);
+
+
 
 server.listen(config.PORT);
 
 
 const solveAll = async () => {
-    let allUsers =await userService.getAllUsers();
-    console.log(allUsers);
-    const createdUser = await userService.createUser({
-        email: 'testMail@abv.bg',
-        password: 'test',
-        firstName: 'JOJO',
-        lastName: 'Kogov',
-        roleId: 2,
-    });
-    console.log(createdUser);
 
     allUsers =await userService.getAllUsers();
     console.log(allUsers);

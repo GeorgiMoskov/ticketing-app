@@ -7,29 +7,36 @@ const config = require('./../config');
 
 const init = () => {
 
-    const register = () => {
-        return async (req, res) => {
-            console.log('registeeerrr');
-            try {
-                userService.createUser(req.body.email, req.body.password, req.body.name, req.body.roleId);
-            } catch (er) {
-                console.log(er);
-                res.status(401).send({
-                    error: er,
-                });
-            }
-
-        }
-    }
-
     const login = () => {
         return async (req, res) => {
             console.log('loginnnn!');
 
-            const foundUser = userService.getUserByEmail(req.body.email);
+            // const foundUser = userService.getUserByEmail(req.body.email);
         }
     }
 
+    const register = () => {
+        return async (req, res) => {
+            console.log('registeeerrr');
+            
+            // try {
+            //     userService.createUser(req.body.email, req.body.password, req.body.name, req.body.roleId);
+            // } catch (er) {
+            //     console.log(er);
+            //     res.status(401).send({
+            //         error: er,
+            //     });
+            // }
 
+        }
+    }
+    
+    return {
+        login,
+        register
+    }
+}
 
+module.exports = {
+    init,
 }
