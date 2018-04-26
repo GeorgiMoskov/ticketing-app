@@ -16,12 +16,12 @@ userService.getAllUsers = async () => {
 }
 
 userService.getUserById = async (id) => {
-    const user = await userData.getById();
+    const user = await userData.getById(id);
     return user;
 };
 
 userService.getUserByEmail = async (email) => {
-    const user = await userData.getByEmail();
+    const user = await userData.getByEmail(email);
     return user;
 };
 
@@ -65,7 +65,7 @@ userService.createUser = async (userInpObj) => {
     }
 
     const hashedPassword = await new Promise((resolve, reject) => {
-        bcrypt.hash(userObj.password, 10, function (err, hash) {
+        bcrypt.hash(userObj.password, config.BCRYPT_SALT_ROUNDS, function (err, hash) {
             if (err) {
                 console.log(err);
                 throw new Error('there were error while hashing password!');
