@@ -7,7 +7,7 @@ module.exports = {
         id: 1,
         firstName: 'admin',
         lastName: 'Moskov',
-        password: 'test',
+        password: '$2a$04$oXLcSAUBbfpzR59ApruM7.PkfH.yqp1Ih80NCXVYSSs.6UCsK.cNC', // 'test' is hashed with 4 salt rounds
         RoleId: 1,
         createdAt: new Date(),
         updatedAt: new Date(),
@@ -18,7 +18,7 @@ module.exports = {
         id: 2,
         firstName: 'Tosho',
         lastName: 'Tonchev',
-        password: 'test',
+        password: '$2a$04$S8Wnkzb8mW7w32oBEZZfueSYgfG10Q7hXfyQ7WKWxM5GDJyrbOy4e', // 'test' is hashed with 4 salt rounds
         RoleId: 2,
         createdAt: new Date(),
         updatedAt: new Date(),
