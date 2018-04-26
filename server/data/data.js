@@ -36,13 +36,23 @@ module.exports = {
         },
         {
             model: Team,
-            include: [User]
+            as: 'team',
+            include: [{
+                model: User,
+                as: 'teamLeader'
+            }],
         },
-        Status, Importance
+        {
+            model: Status,
+            as: 'status',
+        }, {
+            model: Importance,
+            as: 'importance',
+        }
     ]),
     team: new TeamsData(Team, [{
         model: User,
         as: 'teamLeader'
     }]),
-    
+
 };
