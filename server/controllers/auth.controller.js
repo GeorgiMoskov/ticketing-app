@@ -4,28 +4,29 @@ const jwt = require('jwt-simple');
 const moment = require('moment');
 
 const { userService } = require('./../service_layer/user.service');
+const { roleService } = require('./../service_layer/role.service');
+
 const config = require('./../config');
 
 const init = () => {
 
     const login = () => {
         return async (req, res) => {
-            console.log('loginnnn!');
-
-            if (!validator.isEmail(req.body.email)) {
+            
+            if (!req.body.email || !validator.isEmail(req.body.email + '')) {
                 return res.send({
                     error: 'Email is not valid!',
                 });
             }
 
-            if (validator.isEmpty(req.body.password)) {
+            if (!req.body.password || validator.isEmpty(req.body.password + '')) {
                 return res.send({
                     error: 'Password cant be empty!',
                 });
             }
 
             const userFound = await userService.getUserByEmail(req.body.email);
-            console.log(userFound);
+            
             if (!userFound) {
                 return res.send({
                     error: 'Wrong email or password!',
@@ -33,7 +34,7 @@ const init = () => {
             }
 
             const isPasswordCoincides = await bcrypt.compare(req.body.password, userFound.password);
-            if(!isPasswordCoincides) {
+            if (!isPasswordCoincides) {
                 return res.send({
                     error: 'Wrong email or password! KOr',
                 });
@@ -57,23 +58,31 @@ const init = () => {
 
     const register = () => {
         return async (req, res) => {
-            const canCreateUser = req.user.privileges.find( (privilege) => privilege == 'canCreateUser' );
-            
-            if(!canCreateUser){
+            const canCreateUser = req.user.privileges.find((privilege) => privilege == 'canCreateUser');
+
+            if (!canCreateUser) {
                 return res.send('you CAN NOT register other users!');
             }
 
-            return res.send('you CAN register other users!');
+            const userWillBeCreated = {
+                email: req.body.userToCreate.email,
+                password: (req.body.userToCreate.password),
+                firstName: req.body.userToCreate.firstName,
+                lastName: req.body.userToCreate.lastName,
+                roleName: req.body.userToCreate.roleName
+            }
 
-            // try {
-            //     userService.createUser(req.body.email, req.body.password, req.body.name, req.body.roleId);
-            // } catch (er) {
-            //     console.log(er);
-            //     res.status(401).send({
-            //         error: er,
-            //     });
-            // }
-
+            try {
+                const userCreated = await userService.createUser(userWillBeCreated);
+                res.status(200).send({
+                    user: userCreated,
+                })
+            } catch (er) {
+                console.log(er);
+                res.status(401).send({
+                    error: er,
+                })
+            }
         }
     }
 

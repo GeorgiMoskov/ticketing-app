@@ -5,8 +5,9 @@ const config = require('./../config');
 
 const {
     userData,
-    roleData,
 } = require('./../data');
+
+const {roleService} = require('./role.service');
 
 const userService = {};
 
@@ -26,49 +27,56 @@ userService.getUserByEmail = async (email) => {
 };
 
 userService.createUser = async (userInpObj) => {
-
+    
+    //make sure all properties are string so validator could test , if tey are not strings it will crash
     const userObj = {
-        email: userInpObj.email,
+        email: userInpObj.email + '',
         password: (userInpObj.password +''),
-        firstName: userInpObj.firstName,
-        lastName: userInpObj.lastName,
-        RoleId: userInpObj.roleId
+        firstName: userInpObj.firstName + '',
+        lastName: userInpObj.lastName + '',
+        RoleId: null, // in validations will use userInpObj.roleName and latter will set RoleId
     };
+    userInpObj.roleName += '';
 
-    console.log(userObj);
 
-    if (!validator.isEmail(userObj.email)) {
-        throw new Error('Email is not valid!');
+    if (!userObj.email || !validator.isEmail(userObj.email)) {
+        throw 'Email is not valid!';
     }
 
-    if (validator.isEmpty(userObj.password)) {
-        throw new Error('Password cant be empty');
+    if (!userObj.password ||  validator.isEmpty(userObj.password)) {
+        throw 'Password cant be empty';
     }
 
-    if (validator.isEmpty(userObj.firstName) || !validator.isAlpha(userObj.firstName)) {
-        throw new Error('First name is not valid !')
+    if (!userObj.firstName || validator.isEmpty(userObj.firstName) || !validator.isAlpha(userObj.firstName)) {
+        throw 'First name is not valid !';
     }
 
-    if (!validator.isNumeric(userObj.RoleId + '')) {
-        throw new Error('Role ID must be Integer Number');
+    if (!userInpObj.roleName || validator.isEmpty(userInpObj.roleName)) {
+        throw 'Role Cant be empty! ';
     }
 
     const userFound = await userData.getByEmail(userObj.email);
     if (userFound) {
-        throw new Error('User with this E-mail Allready exists!');
+        throw 'User with this E-mail Allready exists!';
     }
-
-    const roleFound = await roleData.getById(userObj.RoleId);
+    let roleFound = undefined;
+    try {
+    roleFound = await roleService.getRoleByName(userInpObj.roleName);
+    } catch(er){
+        throw er;
+    }
 
     if (!roleFound) {
-        throw new Error('Role with this ID doesnt exists');
+        throw 'Role with this name doesnt exists';
     }
+
+    userObj.RoleId = roleFound.id;
 
     const hashedPassword = await new Promise((resolve, reject) => {
         bcrypt.hash(userObj.password, config.BCRYPT_SALT_ROUNDS, function (err, hash) {
             if (err) {
                 console.log(err);
-                throw new Error('there were error while hashing password!');
+                throw 'there were error while hashing password!';
                 reject(err);
             };
             resolve(hash);

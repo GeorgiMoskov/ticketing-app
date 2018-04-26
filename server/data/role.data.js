@@ -51,6 +51,22 @@ class RolesData extends Data {
         return role;
     }
 
+    async getByName(name) {
+        const roleSequelize = await this.Model.findOne({
+            where: {
+                name: name,
+            },
+            include: this.includes,
+        });
+
+        if (!roleSequelize) {
+            return null;
+        }
+
+        const role = this.convertRoleSequelizeObjToRoleObj(roleSequelize);
+        return role;
+    }
+
     async update(obj, id) {
         const roleSequelize = await this.updateElement(obj, id);
 
