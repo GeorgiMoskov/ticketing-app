@@ -10,22 +10,18 @@ class UsersData extends Data {
         const user = {};
         user.id = userSequelize.id;
         user.email = userSequelize.email;
+        user.password = userSequelize.password;
         user.firstName = userSequelize.firstName;
         user.lastName = userSequelize.lastName;
-
         user.role = userSequelize.Role.name;
         user.privileges = userSequelize.Role.Privileges.map((privilegeSequelize) => privilegeSequelize.name);
-
-        if (userSequelize.imgUrl) {
-            user.imgUrl = userSequelize.imgUrl;
-        }
-        if (userSequelize.description) {
-            user.description = userSequelize.description;
-        }
+        user.imgUrl = userSequelize.imgUrl;
+        user.description = userSequelize.description;
         return user;
     }
 
     async create(obj) {
+        // obj contains properties of user that will be created
         const userSequelize = await this.createElement(obj);
 
         if (!userSequelize) {
@@ -77,6 +73,7 @@ class UsersData extends Data {
     }
 
     async update(obj, id) {
+        // obj contains properties that we want to update of user with id
         const userSequelize = await this.updateElement(obj, id);
 
         if (!userSequelize) {
