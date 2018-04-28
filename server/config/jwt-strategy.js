@@ -1,7 +1,7 @@
 const JwtStrategy = require('passport-jwt').Strategy;
 const ExtractJwt = require('passport-jwt').ExtractJwt;
 
-const { userService } = require('./../service_layer/user.service');
+const { userServices } = require('./../service_layer/user.services');
 
 const config = require('./index');
 
@@ -10,13 +10,11 @@ const options = {
     secretOrKey: config.JWT_SECRET,
 };
 
-console.log(config);
-
 const init = function () {
     // checks expiration date of the token, and if it's not expired it will execute the callback
     return new JwtStrategy(options, async function (jwt_payload, done) {
         //jwt_payload is decoded token
-        let userFound = await userService.getUserById(jwt_payload.sub);
+        let userFound = await userServices.getUserById(jwt_payload.sub);
         
         if (!userFound) {
             return done('Access denied', false);

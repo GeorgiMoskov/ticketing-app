@@ -4,9 +4,9 @@ const {
     roleData,
 } = require('./../data');
 
-const roleService = {};
+const roleServices = {};
 
-roleService.getRoleByName = async (roleName) => {
+roleServices.getRoleByName = async (roleName) => {
     roleName = roleName + '';
     
     if ( !roleName || validator.isEmpty(roleName)) {
@@ -19,5 +19,5 @@ roleService.getRoleByName = async (roleName) => {
 }
 
 module.exports = {
-    roleService,
+    roleServices,
 }

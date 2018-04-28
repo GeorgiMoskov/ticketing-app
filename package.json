@@ -4,6 +4,11 @@
   "description": "ticketing app project made by Georgi Moskov and Slavka Todorova",
   "main": "index.js",
   "scripts": {
+    "start": "node ./server/server.js",
+    "makemigration": "node ../node_modules/sequelize-auto-migrations/bin/makemigration",
+    "migrate": "../node_modules/.bin/sequelize db:migrate",
+    "generateSeed": "../node_modules/.bin/sequelize seed:generate",
+    "seed": "../node_modules/.bin/sequelize db:seed:all",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
@@ -17,8 +22,10 @@
   },
   "homepage": "https://github.com/GeorgiMoskov/ticketing-app#readme",
   "dependencies": {
+    "bcrypt": "^2.0.1",
     "body-parser": "^1.18.2",
     "express": "^4.16.3",
+    "morgan": "^1.9.0",
     "mysql2": "^1.5.3",
     "sequelize": "^4.37.6",
     "sequelize-auto-migrations": "^1.0.2",

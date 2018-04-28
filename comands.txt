@@ -1,6 +1,0 @@
-makemigration: 
-node ../node_modules/sequelize-auto-migrations/bin/makemigration
-
-
-migrate: 
-../node_modules/.bin/sequelize db:migrate

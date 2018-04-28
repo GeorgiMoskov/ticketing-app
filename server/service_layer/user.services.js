@@ -7,26 +7,26 @@ const {
     userData,
 } = require('./../data');
 
-const {roleService} = require('./role.service');
+const {roleServices} = require('./role.services');
 
-const userService = {};
+const userServices = {};
 
-userService.getAllUsers = async () => {
+userServices.getAllUsers = async () => {
     const users = await userData.getAll();
     return users;
 }
 
-userService.getUserById = async (id) => {
+userServices.getUserById = async (id) => {
     const user = await userData.getById(id);
     return user;
 };
 
-userService.getUserByEmail = async (email) => {
+userServices.getUserByEmail = async (email) => {
     const user = await userData.getByEmail(email);
     return user;
 };
 
-userService.createUser = async (userInpObj) => {
+userServices.createUser = async (userInpObj) => {
     
     //make sure all properties are string so validator could test , if tey are not strings it will crash
     const userObj = {
@@ -61,7 +61,7 @@ userService.createUser = async (userInpObj) => {
     }
     let roleFound = undefined;
     try {
-    roleFound = await roleService.getRoleByName(userInpObj.roleName);
+    roleFound = await roleServices.getRoleByName(userInpObj.roleName);
     } catch(er){
         throw er;
     }
@@ -91,5 +91,5 @@ userService.createUser = async (userInpObj) => {
 }
 
 module.exports = {
-    userService,
+    userServices,
 }

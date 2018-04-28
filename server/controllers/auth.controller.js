@@ -3,8 +3,8 @@ const bcrypt = require('bcrypt');
 const jwt = require('jwt-simple');
 const moment = require('moment');
 
-const { userService } = require('./../service_layer/user.service');
-const { roleService } = require('./../service_layer/role.service');
+const { userServices } = require('./../service_layer/user.services');
+const { roleServices } = require('./../service_layer/role.services');
 
 const config = require('./../config');
 
@@ -25,8 +25,8 @@ const init = () => {
                 });
             }
 
-            const userFound = await userService.getUserByEmail(req.body.email);
-            
+            const userFound = await userServices.getUserByEmail(req.body.email);
+
             if (!userFound) {
                 return res.send({
                     error: 'Wrong email or password!',
@@ -58,7 +58,7 @@ const init = () => {
 
     const register = () => {
         return async (req, res) => {
-            const canCreateUser = req.user.privileges.find((privilege) => privilege == 'canCreateUser');
+            const canCreateUser = req.user.privileges.find((privilege) => privilege === 'canCreateUser');
 
             if (!canCreateUser) {
                 return res.send('you CAN NOT register other users!');
@@ -73,7 +73,7 @@ const init = () => {
             }
 
             try {
-                const userCreated = await userService.createUser(userWillBeCreated);
+                const userCreated = await userServices.createUser(userWillBeCreated);
                 res.status(200).send({
                     user: userCreated,
                 })
