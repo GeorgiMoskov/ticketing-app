@@ -1,6 +1,8 @@
-.smt{
+.login-wrapper{
+    max-width: 400px;
+    margin: 0 auto;
+}
+
+mat-form-field{
     display: block;
-    width: 200px;
-    height: 200px;
-    background-color: red;
 }

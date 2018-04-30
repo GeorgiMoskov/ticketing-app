@@ -1,5 +1,15 @@
-<p class = "smt">
-  login works!
-</p>
+<mat-card class="login-wrapper">
+  <mat-card-title>Login to Ticketing system</mat-card-title>
+  <mat-form-field class="email-input">
+    <input matInput placeholder="Enter your email" [(ngModel)]="email">
+    <mat-icon matSuffix>account_circle</mat-icon>
+  </mat-form-field>
 
-<!-- <router-outlet></router-outlet> -->
+  <mat-form-field class="password-input">
+    <input matInput placeholder="Enter your password" [type]="'password'" [(ngModel)]="password">
+    <mat-icon matSuffix>visibility</mat-icon>
+  </mat-form-field>
+
+  <button mat-raised-button color="primary" class="login-button">Login</button>
+</mat-card>
+
