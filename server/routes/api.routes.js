@@ -4,8 +4,10 @@ const ticketController =  require('./../controllers/ticket.controller');
 
     const init = (server, passport) => {
         const controller = ticketController.init();
+
+        router.get('/all', passport.authenticate('jwt', { session: false }), controller.getAllTickets());
+
         server.use('/api/ticket', router);
-        router.get('/all', controller.getAllTickets());
 
 }
 
