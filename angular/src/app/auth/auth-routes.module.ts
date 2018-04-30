@@ -1,11 +1,11 @@
 import { NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
-import { ROUTES } from './app-routes';
+import { ROUTES } from './auth-routes';
 
 @NgModule({
     imports: [
-      RouterModule.forRoot(ROUTES),
+      RouterModule.forChild(ROUTES),
     ],
     exports: [RouterModule],
   })
-  export class AppRoutingModule {}
+  export class AuthRoutingModule { }
