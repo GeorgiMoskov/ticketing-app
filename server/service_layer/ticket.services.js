@@ -8,25 +8,40 @@ const ticketServices = {};
 
 ticketServices.getAllTickets = async () => {
     const tickets = await ticketData.getAll();
+
+    if(!tickets) {
+        return null;
+    }
     return tickets;
 }
 
 ticketServices.getAllTicketsOfTeam = async (teamId) => {
     const tickets = await ticketData.getAll();
-    tickets.find((ticket) => ticket.teamId = teamId);
 
-    return tickets;
+    if(!tickets) {
+        return null;
+    }
+    const teamTickets = tickets.find((ticket) => ticket.teamId = teamId);
+
+    return teamTickets;
 };
 
 ticketServices.getAllTicketsAssignTo = async (userId) => {
     const tickets = await ticketData.getAll();
-    tickets.filter((ticket) => ticket.assignTo = userId);
+    if(!tickets) {
+        return null;
+    }
+    const userTickets = tickets.filter((ticket) => ticket.assignToId === userId);
 
-    return tickets;
+    return userTickets;
 }
 
 ticketServices.getTicketById = async (id) => {
     const ticket = await ticketData.getById(id);
+
+    if(!ticket) {
+        return null;
+    }
     return ticket;
 };
 

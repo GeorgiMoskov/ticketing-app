@@ -25,7 +25,8 @@ const init = function () {
             id: userFound.id,
             email: userFound.email,
             role: userFound.role,
-            privileges: userFound.privileges
+            privileges: userFound.privileges,
+            teams: userFound.teams
         }
 
         return done(null, userDataOnEveryReq);
