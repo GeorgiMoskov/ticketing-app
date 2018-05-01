@@ -17,9 +17,18 @@ const TeamsData = require('./team.data');
 
 module.exports = {
     user: new UsersData(User, [{
-        model: Role,
-        include: [Privilege]
-    }]),
+            model: Role,
+            include: [Privilege]
+        },
+        {
+            model: Team,
+            as: 'teams',
+            attributes: [
+                'id',
+            ],
+            through: 'users_in_teams',
+        }
+    ]),
     role: new RolesData(Role, [Privilege]),
     privilege: new Data(Privilege),
     ticket: new TicketsData(Ticket, [{
@@ -50,9 +59,19 @@ module.exports = {
             as: 'importance',
         }
     ]),
-    team: new TeamsData(Team, [{
-        model: User,
-        as: 'teamLeader'
-    }]),
+    team: new TeamsData(Team, [
+        {
+            model: User,
+            as: 'users_in_team',
+            attributes: [
+                'id',
+            ],
+            through: 'users_in_teams',
+        },
+        {
+            model: User,
+            as: 'teamLeader'
+        },
+    ]),
 
 };

@@ -1,8 +1,8 @@
 const Data = require('./generic.data');
 
 class RolesData extends Data {
-    constructor(Role, [Privileges]) {
-        super(Role, [Privileges]);
+    constructor(model, includes) {
+        super(model, includes);
     }
 
     convertRoleSequelizeObjToRoleObj(roleSequelize) {

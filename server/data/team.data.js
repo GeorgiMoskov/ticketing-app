@@ -1,8 +1,8 @@
 const Data = require('./generic.data');
 
 class TeamsData extends Data {
-    constructor(model, [includes]) {
-        super(model, [includes]);
+    constructor(model, includes) {
+        super(model, includes);
     }
 
     convertTeamSequelizeObjToTeamObj(teamSequelize) {
@@ -19,7 +19,12 @@ class TeamsData extends Data {
             team.teamLeaderId = teamSequelize.teamLeader.id;
             team.teamLeaderName = teamSequelize.teamLeader.firstName;
         }
-        
+        if (teamSequelize.users_in_team) {
+            team.users = teamSequelize.users_in_team.map((user)=> user.id);
+        } else {
+            team.users =[];
+        }
+
         return team;
     }
 

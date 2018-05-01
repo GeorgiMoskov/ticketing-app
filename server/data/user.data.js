@@ -1,8 +1,8 @@
 const Data = require('./generic.data');
 
 class UsersData extends Data {
-    constructor(User, [Role]) {
-        super(User, [Role]);
+    constructor(model, includes) {
+        super(model, includes);
     }
 
     // can use different templates for different purposes 
@@ -17,6 +17,7 @@ class UsersData extends Data {
         user.privileges = userSequelize.Role.Privileges.map((privilegeSequelize) => privilegeSequelize.name);
         user.imgUrl = userSequelize.imgUrl;
         user.description = userSequelize.description;
+        user.teams = userSequelize.teams.map((teamSequelize) => teamSequelize.id);
         return user;
     }
 
@@ -90,6 +91,7 @@ class UsersData extends Data {
 
         return null;
     }
+
 
 }
 
