@@ -6,7 +6,9 @@ import { AppComponent } from './app.component';
 import { HomeComponent } from './home/home.component';
 
 //import { routing } from './app.routing';
+
 import { AppRoutingModule } from './app-routing.module';
+import { CoreModule } from './core/core.module';
 
 
 
@@ -18,6 +20,7 @@ import { AppRoutingModule } from './app-routing.module';
   imports: [
     //BrowserModule,
     BrowserAnimationsModule,
+    CoreModule,
     AppRoutingModule
   ],
   providers: [],
