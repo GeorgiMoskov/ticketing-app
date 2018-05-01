@@ -12,6 +12,8 @@ const init = () => {
 
     const login = () => {
         return async (req, res) => {
+
+            console.log(req.body);
             
             if (!req.body.email || !validator.isEmail(req.body.email + '')) {
                 return res.send({

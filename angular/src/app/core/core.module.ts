@@ -1,6 +1,8 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
+import { ToastrModule } from 'ngx-toastr';
+
 import { JwtModule } from '@auth0/angular-jwt';
 import { AuthService } from './auth.service';
 import { IsNotLogged } from './guards/is-not-logged';
@@ -22,6 +24,7 @@ export function tokenGetter() {
       },
     }),
     HttpClientModule,
+    ToastrModule.forRoot(),
   ],
   providers: [
     {provide: AuthService, useClass: AuthService},

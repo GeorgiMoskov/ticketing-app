@@ -12,6 +12,8 @@ import {
   AuthService
 } from '../../core/auth.service';
 
+import { ToastrService } from 'ngx-toastr';
+
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
@@ -30,8 +32,9 @@ export class LoginComponent implements OnInit {
   }
 
   initSigninForm() {
+    const emailRegex = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
     this.loginForm = this.formBuilder.group({
-      'email': ['', [Validators.required, Validators.email]],
+      'email': ['', [Validators.required, Validators.pattern(emailRegex)]],
       'password': ['', [Validators.required]]
     });
 
@@ -44,7 +47,6 @@ export class LoginComponent implements OnInit {
     console.log(this.password.value);
 
     if (this.loginForm.valid) {
-      
       this.authService.login(this.email.value, this.password.value);
 
     }

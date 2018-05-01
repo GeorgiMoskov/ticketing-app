@@ -14,11 +14,12 @@ import {
   HttpClient
 } from '@angular/common/http';
 import { Router } from '@angular/router';
+import { ToastrService } from 'ngx-toastr';
 
 @Injectable()
 export class AuthService {
 
-  constructor(private jwtService: JwtHelperService, private router: Router, private http: HttpClient) {}
+  constructor(private jwtService: JwtHelperService, private router: Router, private http: HttpClient,  private toastr: ToastrService) {}
 
   public isAuth(): boolean {
     try {
@@ -47,14 +48,17 @@ export class AuthService {
       .subscribe((data) => {
 
         if(data.error) {
+          this.toastr.error(data.error, '', {closeButton:true});
           console.log(data.error);
         } else {
           localStorage.setItem('token', data.token);
           this.router.navigate(['/dashboard']);
+          this.toastr.success('You are logged in!', '', {closeButton:true});
         };
       }, 
       (err) => {
-        console.log('there were error while login');
+        this.toastr.error('Server Error, Please, try again or later!','', {closeButton:true});
+        console.log('Server Error, Please, try again or later!');
       });
 
     };
