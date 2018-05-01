@@ -9,6 +9,7 @@ import { HomeComponent } from './home/home.component';
 
 import { AppRoutingModule } from './app-routing.module';
 import { CoreModule } from './core/core.module';
+import { Eror404Component } from './eror404/eror404.component';
 
 
 
@@ -16,6 +17,7 @@ import { CoreModule } from './core/core.module';
   declarations: [
     AppComponent,
     HomeComponent,
+    Eror404Component,
   ],
   imports: [
     //BrowserModule,
