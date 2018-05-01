@@ -11,12 +11,6 @@ import {
 import {
   AuthService
 } from '../../core/auth.service';
-import {
-  ReqUserLoginModel
-} from '../../models/users/reqUserLoginModel';
-import {
-  Router
-} from '@angular/router';
 
 @Component({
   selector: 'app-login',
@@ -29,7 +23,7 @@ export class LoginComponent implements OnInit {
   public email: AbstractControl;
   public password: AbstractControl;
 
-  constructor(private formBuilder: FormBuilder, private router: Router, private authService: AuthService) {}
+  constructor(private formBuilder: FormBuilder,  private authService: AuthService) {}
 
   ngOnInit() {
     this.initSigninForm();
@@ -51,20 +45,8 @@ export class LoginComponent implements OnInit {
 
     if (this.loginForm.valid) {
       
-      //this.authService.login({ email: this.email.value,password: this.password.value});
+      this.authService.login(this.email.value, this.password.value);
 
-      this.authService.login( < ReqUserLoginModel > { email: this.email.value,password: this.password.value})
-        .subscribe((data) => {
-          if(data.error){
-            console.log(data.error);
-          }else {
-            localStorage.setItem('token', data.token);
-          this.router.navigate(['/dashboard']);
-          }
-        },
-        (err) => {
-          console.log('there were error while login');
-        });
     }
   }
 
