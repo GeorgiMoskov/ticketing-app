@@ -33,14 +33,32 @@ module.exports = (sequelize, DataTypes) => {
 
     User.associate = function (models) {
         // associations can be defined here
-        const { Role } = models;
+        const {
+            Role,
+            Team,
+        } = models;
 
         User.belongsTo(Role, {
             foreignKey: {
                 allowNull: false,
             },
             onDelete: 'CASCADE',
-        })
+        });
+
+        User.belongsToMany(Team, {
+            as: 'teams',
+            through: 'users_in_teams',
+            foreignKey: 'user_id',
+            otherKey: 'team_id',
+            onDelete: 'CASCADE',
+        });
+        Team.belongsToMany(User, {
+            as: 'users_in_team',
+            through: 'users_in_teams',
+            foreignKey: 'team_id',
+            otherKey: 'user_id',
+            onDelete: 'CASCADE',
+        });
 
     };
     return User;

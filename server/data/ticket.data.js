@@ -1,8 +1,8 @@
 const Data = require('./generic.data');
 
 class TicketsData extends Data {
-    constructor(Ticket, includes) {
-        super(Ticket, includes);
+    constructor(model, includes) {
+        super(model, includes);
     }
 
     convertSequelizeObjToTicketObj(ticketSequelize) {
