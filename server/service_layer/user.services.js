@@ -7,13 +7,15 @@ const {
     userData,
 } = require('./../data');
 
-const {roleServices} = require('./role.services');
+const {
+    roleServices
+} = require('./role.services');
 
 const userServices = {};
 
 userServices.getAllUsers = async () => {
     const users = await userData.getAll();
-    if(!users) {
+    if (!users) {
         return null;
     }
     return users;
@@ -21,26 +23,42 @@ userServices.getAllUsers = async () => {
 
 userServices.getUserById = async (id) => {
     const user = await userData.getById(id);
-    if(!user) {
+    if (!user) {
         return null;
     }
     return user;
 };
 
+userServices.getUsersInfo = async (usersIdArr) => {
+    const users = [];
+    await Promise.all(
+        [...usersIdArr].map(async (userId) => {
+            const user = await userData.getById(userId);
+            if (user) {
+                users.push(user);
+            }
+        }));
+
+    if (users.length === 0) {
+        return null;
+    }
+    return users;
+}
+
 userServices.getUserByEmail = async (email) => {
     const user = await userData.getByEmail(email);
-    if(!user) {
+    if (!user) {
         return null;
     }
     return user;
 };
 
 userServices.createUser = async (userInpObj) => {
-    
+
     //make sure all properties are string so validator could test , if tey are not strings it will crash
     const userObj = {
         email: userInpObj.email + '',
-        password: (userInpObj.password +''),
+        password: (userInpObj.password + ''),
         firstName: userInpObj.firstName + '',
         lastName: userInpObj.lastName + '',
         RoleId: null, // in validations will use userInpObj.roleName and latter will set RoleId
@@ -52,7 +70,7 @@ userServices.createUser = async (userInpObj) => {
         throw 'Email is not valid!';
     }
 
-    if (!userObj.password ||  validator.isEmpty(userObj.password)) {
+    if (!userObj.password || validator.isEmpty(userObj.password)) {
         throw 'Password cant be empty';
     }
 
@@ -70,8 +88,8 @@ userServices.createUser = async (userInpObj) => {
     }
     let roleFound = undefined;
     try {
-    roleFound = await roleServices.getRoleByName(userInpObj.roleName);
-    } catch(er){
+        roleFound = await roleServices.getRoleByName(userInpObj.roleName);
+    } catch (er) {
         throw er;
     }
 

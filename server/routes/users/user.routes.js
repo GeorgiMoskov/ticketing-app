@@ -8,6 +8,9 @@ const userController =  require('./../../controllers/user.controller');
         router.get('/all', passport.authenticate('jwt', { session: false }), controller.getAllUsers());
 
         router.get('/', passport.authenticate('jwt', { session: false }), controller.getLogedUserInfo());
+
+        router.get('/allOfTeam/:teamId', passport.authenticate('jwt', { session: false }), controller.getAllUsersOfTeam());
+
         server.use('/api/users', router);
 
 }

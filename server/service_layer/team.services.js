@@ -23,7 +23,9 @@ teamServices.getTeamsInfo = async (teamsIdArr) => {
     await Promise.all(
         [...teamsIdArr].map(async (teamId) => {
         const team = await teamData.getById(teamId);
-            teams.push(team);
+            if(team) {
+                teams.push(team);
+            }
         }));
         
         if (teams.length === 0) {
