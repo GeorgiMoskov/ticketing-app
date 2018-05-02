@@ -10,6 +10,10 @@ const init = (server, passport) => {
         session: false
     }), controller.getAllTeams());
 
+    router.get('/allByLogedUser', passport.authenticate('jwt', {
+        session: false
+    }), controller.getTeamsByLogedUser());
+
     router.get('/allByUser/:userId', passport.authenticate('jwt', {
         session: false
     }), controller.getTeamsByUserId());

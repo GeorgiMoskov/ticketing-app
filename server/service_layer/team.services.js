@@ -18,20 +18,20 @@ teamServices.getAllTeams = async () => {
     return teams;
 }
 
-teamServices.getTeamsByUserId = async (userId) => {
-    const user = await userServices.getUserById(userId);
-
-    if (!user) {
-        return null;
-    }
-    const teams = await user.getTeams();
-
-    if(!teams) {
-        return null;
-    }
-
-    return teams;
+teamServices.getTeamsInfo = async (teamsIdArr) => {
+    const teams =[];
+    await Promise.all(
+        [...teamsIdArr].map(async (teamId) => {
+        const team = await teamData.getById(teamId);
+            teams.push(team);
+        }));
+        
+        if (teams.length === 0) {
+            return null;
+        }
+        return teams;
 }
+
 
 teamServices.getTeamById = async (teamId) => {
     const team = await teamData.getById(teamId);

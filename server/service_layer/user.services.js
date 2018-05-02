@@ -13,16 +13,25 @@ const userServices = {};
 
 userServices.getAllUsers = async () => {
     const users = await userData.getAll();
+    if(!users) {
+        return null;
+    }
     return users;
 }
 
 userServices.getUserById = async (id) => {
     const user = await userData.getById(id);
+    if(!user) {
+        return null;
+    }
     return user;
 };
 
 userServices.getUserByEmail = async (email) => {
     const user = await userData.getByEmail(email);
+    if(!user) {
+        return null;
+    }
     return user;
 };
 
