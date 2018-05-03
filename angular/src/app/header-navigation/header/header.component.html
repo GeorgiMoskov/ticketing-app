@@ -1,0 +1,12 @@
+<mat-toolbar color="primary">
+  <mat-toolbar-row>
+    <span>Ticketing App</span>
+    <span class="spacer"></span>
+    <span>Admin@abv.bg</span>
+    <button mat-button [matMenuTriggerFor]="menu" class="menu-btn" >Menu</button>
+    <mat-menu #menu="matMenu">
+      <button mat-menu-item>Admin Panel</button>
+      <button mat-menu-item (click) = "logOut()">Logout</button>
+    </mat-menu>
+  </mat-toolbar-row>
+</mat-toolbar>

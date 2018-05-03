@@ -8,6 +8,7 @@ import { AuthService } from './auth.service';
 import { IsNotLogged } from './guards/is-not-logged';
 import { HttpClientModule } from '@angular/common/http';
 import { IsLogged } from './guards/is-logged';
+import { RoleService } from './role.service';
 
 export function tokenGetter() {
   return localStorage.getItem('token');
@@ -28,6 +29,7 @@ export function tokenGetter() {
   ],
   providers: [
     {provide: AuthService, useClass: AuthService},
+    {provide: RoleService, useClass: RoleService},
     {provide: IsNotLogged, useClass: IsNotLogged},
     {provide: IsLogged, useClass: IsLogged},
   ]

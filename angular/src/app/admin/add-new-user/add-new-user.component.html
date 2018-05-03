@@ -1,0 +1,38 @@
+<mat-card class="login-wrapper">
+  <mat-card-title>Create new user</mat-card-title>
+  <form [formGroup]="createUserForm" (ngSubmit)="onSubmit()">
+    <mat-form-field class="email-input">
+      <input matInput placeholder="Enter your email" formControlName="email">
+      <mat-icon matSuffix>account_circle</mat-icon>
+      <mat-error *ngIf="email.invalid">Invalid email</mat-error>
+    </mat-form-field>
+
+    <mat-form-field class="password-input">
+      <input matInput placeholder="Enter your password" [type]="'text'" formControlName="password">
+      <mat-icon matSuffix>visibility</mat-icon>
+      <mat-error *ngIf="password.invalid"> Invalid password </mat-error>
+    </mat-form-field>
+
+    <mat-form-field class="role-select">
+      <mat-select placeholder="Select Role" formControlName="role">
+        <mat-option *ngFor = "let role of rolesNames" value="option">{{ roleasync }}</mat-option>
+      </mat-select>
+      <mat-error *ngIf="role.invalid"> Role is not selected </mat-error>
+    </mat-form-field>
+
+    <mat-form-field class="firstName-input">
+      <input matInput placeholder="Enter first name" [type]="'text'" formControlName="firstName">
+      <!-- <mat-icon matSuffix>visibility</mat-icon> -->
+      <mat-error *ngIf="firstName.invalid"> Invalid First Name </mat-error>
+    </mat-form-field>
+
+    <mat-form-field class="lastName-input">
+      <input matInput placeholder="Enter last name" [type]="'text'" formControlName="lastName">
+      <!-- <mat-icon matSuffix>visibility</mat-icon> -->
+      <mat-error *ngIf="lastName.invalid"> Invalid Last Name </mat-error>
+    </mat-form-field>
+
+    <button mat-raised-button [disabled]="!createUserForm.valid" color="primary" class="login-button" type="submit"> Login </button>
+  </form>
+
+</mat-card>

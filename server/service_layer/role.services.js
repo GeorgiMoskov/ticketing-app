@@ -18,6 +18,10 @@ roleServices.getRoleByName = async (roleName) => {
     return role;
 }
 
+roleServices.getAllRoles = async() => {
+    return await roleData.getAll();
+}
+
 module.exports = {
     roleServices,
 }

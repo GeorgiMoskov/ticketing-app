@@ -3,7 +3,6 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NgModule } from '@angular/core';
 
 import { AppComponent } from './app.component';
-import { HomeComponent } from './home/home.component';
 
 //import { routing } from './app.routing';
 
@@ -16,7 +15,6 @@ import { Eror404Component } from './eror404/eror404.component';
 @NgModule({
   declarations: [
     AppComponent,
-    HomeComponent,
     Eror404Component,
   ],
   imports: [
