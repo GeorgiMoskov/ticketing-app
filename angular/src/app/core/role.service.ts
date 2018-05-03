@@ -17,21 +17,8 @@ export class RoleService {
   constructor(private router: Router, private http: HttpClient,  private toastr: ToastrService) {}
   
   public getAllRoles() {  // NEED FIX
-     this.http.get <ResGetAllRolesnamesModel>('http://localhost:3001/api/roles/getAllRoles')
-      .subscribe((data) => {
-        console.log(data);
-        if(data.error) {
-          this.toastr.error(data.error, '', {closeButton:true});
-          console.log(data.error);
-        } else {
-          return data.allRolesNames;
-        };
-      }, 
-      (err) => {
-        this.toastr.error('Server Error, Please, try again or later!','', {closeButton:true});
-        console.log('Server Error, Please, try again or later!');
-      });
-
+     return this.http.get <ResGetAllRolesnamesModel>('http://localhost:3001/api/roles/getAllRoles')
+      
     };
 
 }

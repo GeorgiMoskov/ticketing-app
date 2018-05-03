@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, AbstractControl, FormBuilder, Validators } from '@angular/forms';
 import { RoleService } from '../../core/role.service';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-add-new-user',
@@ -18,13 +19,29 @@ export class AddNewUserComponent implements OnInit {
 
   public rolesNames; // WILL BE OBSERVABLE !!!!
 
-  constructor(private formBuilder: FormBuilder, private roleService: RoleService) { }
+  constructor(private formBuilder: FormBuilder, private roleService: RoleService, private toastr: ToastrService) { }
 
   ngOnInit() {
-    this.rolesNames = this.roleService.getAllRoles(); // WILL SUBSCRIBE SOME HOW
-    console.log(this.rolesNames);
+    this.initRoles();
+; // WILL SUBSCRIBE SOME HOW
     this.initCreateUserForm();
 
+  }
+
+  initRoles(){
+    this.roleService.getAllRoles().subscribe((data) => {
+      console.log(data);
+      if(data.error) {
+        this.toastr.error(data.error, '', {closeButton:true});
+        console.log(data.error);
+      } else {
+        this.rolesNames = data.allRolesNames;
+      };
+    }, 
+    (err) => {
+      this.toastr.error('Server Error, Please, try again or later!','', {closeButton:true});
+      console.log('Server Error, Please, try again or later!');
+    });
   }
 
   initCreateUserForm() {
