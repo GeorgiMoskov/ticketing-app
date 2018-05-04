@@ -21,6 +21,12 @@ module.exports = {
         createdAt: new Date(),
         updatedAt: new Date(),
       },
+      {
+        id: 4,
+        name: 'canAccessAdminPanel',
+        createdAt: new Date(),
+        updatedAt: new Date(),
+      }
     ], {});
 
   },

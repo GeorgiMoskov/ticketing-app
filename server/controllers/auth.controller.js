@@ -48,6 +48,10 @@ const init = () => {
                 sub: userFound.id,
                 email: userFound.email,
                 exp: tokenExpirce,
+                firstName: userFound.firstName,
+                lastName: userFound.lastName,
+                role: userFound.role,
+                privileges: userFound.privileges
             };
 
             const token = jwt.encode(payload, config.JWT_SECRET);
