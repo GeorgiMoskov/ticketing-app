@@ -5,6 +5,7 @@ import { JwtHelperService } from '@auth0/angular-jwt';
 import { HttpClient } from '@angular/common/http';
 import { ToastrService } from 'ngx-toastr';
 import { resUserModel } from '../models/resUserModel';
+import { ResGetAllUsersModel } from '../models/resGetAllUsersModel';
 
 
 @Injectable()
@@ -42,13 +43,22 @@ export class UserService {
           console.log(data.error);
         } else {
           console.log(data.user);
-          this.toastr.success('You are logged in!', '', {closeButton:true});
+          this.toastr.success('New User is registered!', '', {closeButton:true});
         };
       }, 
       (err) => {
+        console.log(err);
         this.toastr.error('Server Error, Please, try again or later!','', {closeButton:true});
         console.log('Server Error, Please, try again or later!');
       });
+  }
+
+  public deleteUser(userId) {
+    return this.http.post<{error:string, success:string}> ('http://localhost:3001/api/users/deleteUser', {userId: userId});
+  }
+
+  public getAllUsers() {
+    return this.http.get <ResGetAllUsersModel> ('http://localhost:3001/api/users/all');
   }
 
   

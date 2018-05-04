@@ -21,7 +21,9 @@ const init = () => {
                 });
             }
 
-            return res.send(users);
+            return res.send({
+                users: users,
+            });
 
         }
     };
@@ -42,14 +44,14 @@ const init = () => {
                     error: 'There is no such team',
                 });
             }
-            
-            if(team.users.length === 0) {
+
+            if (team.users.length === 0) {
                 return res.send({
                     error: `The team with id ${team.id} has no members right now.`,
                 });
             }
 
-            const users =  await userServices.getUsersInfo(team.users);
+            const users = await userServices.getUsersInfo(team.users);
             if (!users) {
                 return res.send({
                     error: `The team with id ${team.id} has no members right now.`,
@@ -67,10 +69,51 @@ const init = () => {
         }
     };
 
+    const deleteUsersById = () => {
+        return async (req, res) => {
+            if (!req.user.privileges.includes('canDeleteUser')) {
+                return res.send({
+                    error: 'you CAN NOT delete other users'
+                });
+            }
+            let userId = req.body.userId;
+
+            if (!userId || !validator.isInt(userId + '')) {
+                return res.send({
+                    error: 'user Id to delte is not valid'
+                });
+            }
+
+            userId = +userId;
+
+            if (req.user.id == userId) {
+                return res.send({
+                    error: 'you CAN NOT delete yourself'
+                });
+            }
+
+            try {
+                const deletedUser = await userServices.deleteUserById(userId);
+            } catch (er) {
+                return res.send({
+                    error: 'There was error on server',
+                })
+            }
+
+            return res.send({
+                success: 'User was deleted',
+            })
+
+
+
+        }
+    }
+
     return {
         getAllUsers,
         getLogedUserInfo,
-        getAllUsersOfTeam
+        getAllUsersOfTeam,
+        deleteUsersById
     }
 
 }

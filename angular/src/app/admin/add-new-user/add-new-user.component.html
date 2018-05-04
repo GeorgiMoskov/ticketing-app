@@ -22,17 +22,15 @@
 
     <mat-form-field class="firstName-input">
       <input matInput placeholder="Enter first name" [type]="'text'" formControlName="firstName">
-      <!-- <mat-icon matSuffix>visibility</mat-icon> -->
       <mat-error *ngIf="firstName.invalid"> Invalid First Name </mat-error>
     </mat-form-field>
 
     <mat-form-field class="lastName-input">
       <input matInput placeholder="Enter last name" [type]="'text'" formControlName="lastName">
-      <!-- <mat-icon matSuffix>visibility</mat-icon> -->
       <mat-error *ngIf="lastName.invalid"> Invalid Last Name </mat-error>
     </mat-form-field>
 
-    <button mat-raised-button [disabled]="!createUserForm.valid" color="primary" class="login-button" type="submit"> Login </button>
+    <button mat-raised-button [disabled]="!createUserForm.valid" color="primary" type="submit"> Create new user </button>
   </form>
 
 </mat-card>

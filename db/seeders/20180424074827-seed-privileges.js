@@ -26,6 +26,12 @@ module.exports = {
         name: 'canAccessAdminPanel',
         createdAt: new Date(),
         updatedAt: new Date(),
+      },
+      {
+        id: 5,
+        name: 'canDeleteUser',
+        createdAt: new Date(),
+        updatedAt: new Date(),
       }
     ], {});
 

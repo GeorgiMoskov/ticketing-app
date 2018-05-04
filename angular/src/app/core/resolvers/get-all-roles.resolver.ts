@@ -23,7 +23,7 @@ export class GetAllRolesResolver implements Resolve < Observable < ResGetAllRole
   constructor(private roleService: RoleService, private toastr: ToastrService) {}
 
   resolve() {
-    return this.roleService.getAllRoles()
+    return this.roleService.getAllRoles();
   }
 }
 

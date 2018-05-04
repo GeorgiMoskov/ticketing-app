@@ -10,7 +10,7 @@ import {MatToolbarModule} from '@angular/material/toolbar';
 import {MatMenuModule} from '@angular/material/menu';
 import {MatTabsModule} from '@angular/material/tabs';
 import {MatSelectModule} from '@angular/material/select';
-
+import {MatTableModule} from '@angular/material';
 
 @NgModule({
   imports: [
@@ -24,7 +24,9 @@ import {MatSelectModule} from '@angular/material/select';
     MatToolbarModule,
     MatMenuModule,
     MatTabsModule,
-    MatSelectModule
+    MatSelectModule,
+    MatTableModule,
+    
     ],
     exports: [
     FormsModule,
@@ -37,7 +39,8 @@ import {MatSelectModule} from '@angular/material/select';
     MatToolbarModule,
     MatMenuModule,
     MatTabsModule,
-    MatSelectModule
+    MatSelectModule,
+    MatTableModule
     ],
 })
 export class MaterialModule {};

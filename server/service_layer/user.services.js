@@ -123,6 +123,13 @@ userServices.createUser = async (userInpObj) => {
     return createdUser;
 }
 
+
+userServices.deleteUserById = async (userId) => {
+    const deletedUser = await userData.delete(userId);
+
+    console.log(deletedUser);
+}
+
 module.exports = {
     userServices,
 }

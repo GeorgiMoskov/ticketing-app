@@ -11,6 +11,8 @@ const userController =  require('./../../controllers/user.controller');
 
         router.get('/allOfTeam/:teamId', passport.authenticate('jwt', { session: false }), controller.getAllUsersOfTeam());
 
+        router.post('/deleteUser', passport.authenticate('jwt', { session: false }), controller.deleteUsersById());
+
         server.use('/api/users', router);
 
 }
