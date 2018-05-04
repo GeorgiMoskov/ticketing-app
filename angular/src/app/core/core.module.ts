@@ -11,6 +11,7 @@ import { IsLogged } from './guards/is-logged';
 import { RoleService } from './role.service';
 import { UserService } from './user.service';
 import { canAccessAdminPanel } from './guards/canAccessAdminPanel';
+import { GetAllRolesResolver } from './resolvers/get-all-roles.resolver';
 
 export function tokenGetter() {
   return localStorage.getItem('token');
@@ -36,6 +37,7 @@ export function tokenGetter() {
     {provide: IsNotLogged, useClass: IsNotLogged},
     {provide: IsLogged, useClass: IsLogged},
     {provide: canAccessAdminPanel, useClass: canAccessAdminPanel},
+    {provide:GetAllRolesResolver, useClass: GetAllRolesResolver},
   ]
 })
 export class CoreModule { }

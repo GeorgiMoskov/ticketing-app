@@ -64,8 +64,7 @@ const init = () => {
 
     const register = () => {
         return async (req, res) => {
-            const canCreateUser = req.user.privileges.find((privilege) => privilege === 'canCreateUser');
-
+            const canCreateUser = req.user.privileges.find((privilege) => privilege === 'canAccessAdminPanel'); //'canCreateUser');
             if (!canCreateUser) {
                 return res.send('you CAN NOT register other users!');
             }
@@ -78,6 +77,8 @@ const init = () => {
                 roleName: req.body.userToCreate.roleName
             }
 
+            console.log(userWillBeCreated);
+
             try {
                 const userCreated = await userServices.createUser(userWillBeCreated);
                 res.status(200).send({
@@ -85,7 +86,7 @@ const init = () => {
                 })
             } catch (er) {
                 console.log(er);
-                res.status(401).send({
+                res.status(400).send({
                     error: er,
                 })
             }

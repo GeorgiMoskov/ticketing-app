@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { FormGroup, AbstractControl, FormBuilder, Validators } from '@angular/forms';
 import { RoleService } from '../../core/role.service';
 import { ToastrService } from 'ngx-toastr';
+import { ActivatedRoute } from '@angular/router';
+import { UserService } from '../../core/user.service';
 
 @Component({
   selector: 'app-add-new-user',
@@ -19,7 +21,7 @@ export class AddNewUserComponent implements OnInit {
 
   public rolesNames;
 
-  constructor(private formBuilder: FormBuilder, private roleService: RoleService, private toastr: ToastrService) { }
+  constructor(private formBuilder: FormBuilder, private userService: UserService, private route: ActivatedRoute, private toastr: ToastrService) { }
 
   ngOnInit() {
     this.initRoles();
@@ -28,20 +30,16 @@ export class AddNewUserComponent implements OnInit {
   }
 
   initRoles(){
-    this.roleService.getAllRoles().subscribe((data) => {
-      console.log(data);
-      if(data.error) {
-        this.toastr.error(data.error, '', {closeButton:true});
-        console.log(data.error);
-      } else {
-        this.rolesNames = data.allRolesNames;
-      };
-    }, 
-    (err) => {
-      this.toastr.error('Server Error, Please, try again or later!','', {closeButton:true});
-      console.log('Server Error, Please, try again or later!');
-    });
-  }
+    const rolesData = this.route.snapshot.data['roles'];
+    console.log(rolesData);
+    if(rolesData.error) {
+      this.toastr.error(rolesData.error, '', {closeButton:true});
+      console.log(rolesData.error);
+    }else {
+      this.rolesNames =rolesData.allRolesNames;
+   };
+  };
+
 
   initCreateUserForm() {
     const emailRegex = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
@@ -62,11 +60,18 @@ export class AddNewUserComponent implements OnInit {
   }
 
   onSubmit() {
-    console.log(this.email.value);
-    console.log(this.password.value);
-
     if (this.createUserForm.valid) {
+      const userToCreate = {
+        email: this.email.value,
+        password: this.password.value,
+        roleName: this.role.value,
+        firstName: this.firstName.value,
+        lastName: this.lastName.value,
+      };
 
+      console.log(userToCreate);
+
+      this.userService.registerNewUser(userToCreate);
     }
   }
 }

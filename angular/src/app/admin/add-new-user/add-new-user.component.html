@@ -2,20 +2,20 @@
   <mat-card-title>Create new user</mat-card-title>
   <form [formGroup]="createUserForm" (ngSubmit)="onSubmit()">
     <mat-form-field class="email-input">
-      <input matInput placeholder="Enter your email" formControlName="email">
+      <input matInput placeholder="Enter email for user" formControlName="email">
       <mat-icon matSuffix>account_circle</mat-icon>
       <mat-error *ngIf="email.invalid">Invalid email</mat-error>
     </mat-form-field>
 
     <mat-form-field class="password-input">
-      <input matInput placeholder="Enter your password" [type]="'text'" formControlName="password">
+      <input matInput placeholder="Enter password for user" [type]="'text'" formControlName="password">
       <mat-icon matSuffix>visibility</mat-icon>
       <mat-error *ngIf="password.invalid"> Invalid password </mat-error>
     </mat-form-field>
 
     <mat-form-field class="role-select">
       <mat-select placeholder="Select Role" formControlName="role">
-        <mat-option *ngFor = "let role of rolesNames " value="option">{{ role }}</mat-option>
+        <mat-option *ngFor = "let role of rolesNames " value="{{ role }}">{{ role }}</mat-option>
       </mat-select>
       <mat-error *ngIf="role.invalid"> Role is not selected </mat-error>
     </mat-form-field>
