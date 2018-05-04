@@ -2,11 +2,15 @@
   <mat-toolbar-row>
     <span>Ticketing App</span>
     <span class="spacer"></span>
-    <span>Admin@abv.bg</span>
-    <button mat-button [matMenuTriggerFor]="menu" class="menu-btn" >Menu</button>
+    <div class="welcome-box">
+      <span class="welcome-label">Welcome</span>
+      <span class="user-names">{{ firstName }} {{ lastName }}</span>
+      <span class="user-email">({{ email }})</span>
+    </div>
+    <button mat-button [matMenuTriggerFor]="menu" class="menu-btn">Menu</button>
     <mat-menu #menu="matMenu">
-      <button mat-menu-item>Admin Panel</button>
-      <button mat-menu-item (click) = "logOut()">Logout</button>
+      <a [routerLink] = '"/dashboard/admin"'><button mat-menu-item *ngIf="canAccessAdminPanel">Admin Panel</button></a>
+      <button mat-menu-item (click)="logOut()">Logout</button>
     </mat-menu>
   </mat-toolbar-row>
 </mat-toolbar>

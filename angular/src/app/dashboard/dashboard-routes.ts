@@ -6,7 +6,7 @@ import { IsLogged } from '../core/guards/is-logged';
 export const ROUTES: Routes = [
     { path: '', component: MainComponent, canActivate: [IsLogged],
     children: [
-      {path: '', loadChildren: './../admin/admin.module#AdminModule' }
+      {path: 'admin', loadChildren: './../admin/admin.module#AdminModule' }
     ]  
   },
   ];

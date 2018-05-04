@@ -9,6 +9,8 @@ import { IsNotLogged } from './guards/is-not-logged';
 import { HttpClientModule } from '@angular/common/http';
 import { IsLogged } from './guards/is-logged';
 import { RoleService } from './role.service';
+import { UserService } from './user.service';
+import { canAccessAdminPanel } from './guards/canAccessAdminPanel';
 
 export function tokenGetter() {
   return localStorage.getItem('token');
@@ -30,8 +32,10 @@ export function tokenGetter() {
   providers: [
     {provide: AuthService, useClass: AuthService},
     {provide: RoleService, useClass: RoleService},
+    {provide: UserService, useClass: UserService},
     {provide: IsNotLogged, useClass: IsNotLogged},
     {provide: IsLogged, useClass: IsLogged},
+    {provide: canAccessAdminPanel, useClass: canAccessAdminPanel},
   ]
 })
 export class CoreModule { }

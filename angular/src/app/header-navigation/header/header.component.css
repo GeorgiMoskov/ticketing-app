@@ -1,11 +1,21 @@
 .icon {
-    padding: 0 14px;
-  }
-  
-  .spacer {
-    flex: 1 1 auto;
-  }
+  padding: 0 14px;
+}
 
-  .menu-btn{
-    background-color: lightskyblue;
-  }
+.spacer {
+  flex: 1 1 auto;
+}
+
+.welcome-box{
+  margin-right: 20px;
+  font-size: 16px;
+}
+
+.user-names{
+  font-size: 18px;
+  font-weight: bold;
+}
+
+.menu-btn {
+  background-color: lightskyblue;
+}

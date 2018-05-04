@@ -17,13 +17,12 @@ export class AddNewUserComponent implements OnInit {
   public firstName: AbstractControl;
   public lastName: AbstractControl;
 
-  public rolesNames; // WILL BE OBSERVABLE !!!!
+  public rolesNames;
 
   constructor(private formBuilder: FormBuilder, private roleService: RoleService, private toastr: ToastrService) { }
 
   ngOnInit() {
     this.initRoles();
-; // WILL SUBSCRIBE SOME HOW
     this.initCreateUserForm();
 
   }
