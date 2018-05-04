@@ -9,6 +9,20 @@ class Data {
         return this.Model.create(obj);
     }
 
+    isExistInDb(id) {
+        return this.Model.count({
+                where: {
+                    id: id
+                }
+            })
+            .then(count => {
+                if (count === 0) {
+                    return false;
+                }
+                return true;
+            });
+    }
+
     getAllElements() {
         return this.Model.findAll({
             include: this.includes,

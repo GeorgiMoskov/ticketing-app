@@ -18,6 +18,18 @@ const init = (server, passport) => {
         session: false
     }), controller.getAssignTo());
 
+    router.get('/allAssignTo/team/:teamId', passport.authenticate('jwt', {
+        session: false
+    }), controller.getAssignToOfTeam());
+
+    router.get('/allAssignTo/:userId', passport.authenticate('jwt', {
+        session: false
+    }), controller.getAssignToUser());
+
+    router.get('/allAssignTo/:userId/team/:teamId', passport.authenticate('jwt', {
+        session: false
+    }), controller.getAssignToUserOfTeam());
+
     router.get('/:ticketId', passport.authenticate('jwt', {
         session: false
     }), controller.getTicketById());

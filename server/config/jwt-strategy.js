@@ -22,6 +22,8 @@ const init = function () {
 
         //this userObject will be attached to the req (req.user) on every route where passport uses this strategy.
         const userDataOnEveryReq = {
+            firstName: userFound.firstName,
+            lastName: userFound.lastName,
             id: userFound.id,
             email: userFound.email,
             role: userFound.role,

@@ -34,7 +34,6 @@ teamServices.getTeamsInfo = async (teamsIdArr) => {
         return teams;
 }
 
-
 teamServices.getTeamById = async (teamId) => {
     const team = await teamData.getById(teamId);
 
@@ -57,13 +56,7 @@ teamServices.isTeamLeader = async (teamId, userId) => {
 
 teamServices.isSuchTeam = async (teamId) => {
 
-    const team = await teamData.getById(teamId);
-
-    if (!team) {
-        return false;
-    }
-
-    return true;
+    return teamData.isExistInDb(teamId);
 }
 
 module.exports = {

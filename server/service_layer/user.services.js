@@ -45,6 +45,12 @@ userServices.getUsersInfo = async (usersIdArr) => {
     return users;
 }
 
+userServices.isSuchUser = async (userId) => {
+
+    return userData.isExistInDb(userId);
+}
+
+
 userServices.getUserByEmail = async (email) => {
     const user = await userData.getByEmail(email);
     if (!user) {
