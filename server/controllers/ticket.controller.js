@@ -23,7 +23,9 @@ const init = () => {
             const allTickets = await ticketServices.getAllTickets();
 
             if (allTickets || allTickets.length === 0) {
-                return res.send(allTickets);
+                return res.send({
+                    data: allTickets
+                });
             }
         }
     };
@@ -64,7 +66,9 @@ const init = () => {
                     error: `There is no tickets of team ${teamId}`,
                 });
             }
-            return res.send(allTickets);
+            return res.send({
+                data: allTickets
+            });
         }
     };
 
@@ -77,7 +81,9 @@ const init = () => {
                     error: `There is no tickets assign to ${req.user.firstName} ${req.user.lastName}`,
                 });
             }
-            return res.send(allTickets);
+            return res.send({
+                data: allTickets
+            });
         }
     };
 
@@ -106,7 +112,9 @@ const init = () => {
                     error: `There is no tickets assign to ${req.user.firstName} ${req.user.lastName}`,
                 });
             }
-            return res.send(allTickets);
+            return res.send({
+                data: allTickets
+            });
         }
     }
 
@@ -135,7 +143,9 @@ const init = () => {
                     error: `There is no tickets assign to user with id ${userId}.`,
                 });
             }
-            return res.send(allTickets);
+            return res.send({
+                data: allTickets
+            });
         }
     }
 
@@ -179,7 +189,9 @@ const init = () => {
                     error: `There is no tickets assign to user with id ${userId} for team with id ${teamId}`,
                 });
             }
-            return res.send(allTickets);
+            return res.send({
+                data: allTickets
+            });
         }
     }
 
@@ -219,7 +231,9 @@ const init = () => {
                 });
             }
 
-            return res.send(ticket);
+            return res.send({
+                data: ticket
+            });
         }
     }
 
