@@ -9,6 +9,7 @@
     </div>
     <button mat-button [matMenuTriggerFor]="menu" class="menu-btn">Menu</button>
     <mat-menu #menu="matMenu">
+      <a [routerLink] = '"/dashboard/tickets"'><button mat-menu-item>Tickets</button></a>
       <a [routerLink] = '"/dashboard/admin"'><button mat-menu-item *ngIf="canAccessAdminPanel">Admin Panel</button></a>
       <a [routerLink] = '"/dashboard/teams"'><button mat-menu-item>Teams</button></a>
       <button mat-menu-item (click)="logOut()">Logout</button>

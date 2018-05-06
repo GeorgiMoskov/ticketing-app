@@ -205,7 +205,6 @@ const init = () => {
             }
             const ticketId = +req.params.ticketId;
             const ticket = await ticketServices.getTicketById(ticketId);
-
             if (!ticket) {
                 return res.send({
                     error: `You send invalid ticketId ${ticketId}`,

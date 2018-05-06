@@ -7,7 +7,7 @@ import { ToastrService } from 'ngx-toastr';
 import { ResGeneric } from '../models/resGeneric';
 import { User } from '../models/User';
 
-import { resGeneric } from '../models/resGeneric';
+import { ResGeneric } from '../models/ResGeneric';
 import { User } from '../models/User';
 
 

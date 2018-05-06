@@ -1,0 +1,17 @@
+<nav mat-tab-nav-bar>
+    <a mat-tab-link [routerLink]=" '' " routerLinkActive #link1="routerLinkActive" [active]="link1.isActive">
+        All tickets 
+      </a>
+  <a mat-tab-link [routerLink]=" 'assignto' " routerLinkActive #link2="routerLinkActive" [active]="link2.isActive">
+    Tickets assign to me 
+  </a>
+  <a mat-tab-link [routerLink]=" 'assign' " routerLinkActive #link3="routerLinkActive" [active]="link3.isActive">
+    Tickets assign to me in teams 
+  </a>
+  <a mat-tab-link [routerLink]=" 'requested' " routerLinkActive #link4="routerLinkActive" [active]="link4.isActive">
+    Requested tickets 
+  </a>
+  
+</nav>
+
+<router-outlet></router-outlet>

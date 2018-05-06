@@ -1,0 +1,24 @@
+<h3> List of Tickets </h3>
+
+
+<a *ngFor="let ticket of tickets" routerLink="detail/{{ticket.id}}">
+  <mat-card class="tickets">
+    <mat-card-header>
+      <mat-card-title> {{ticket.description}} </mat-card-title>
+      <mat-card-subtitle> {{ticket.teamName}}</mat-card-subtitle>
+      <mat-card-subtitle>{{ticket.importanceName}}</mat-card-subtitle>
+      <mat-card-subtitle>{{ticket.statusName}}</mat-card-subtitle>
+    </mat-card-header>
+
+    <mat-card-content> Requester: {{ticket.requesterName}}</mat-card-content>
+    <mat-card-content> Contact to: {{ticket.escalationContactName}}</mat-card-content>
+    <mat-card-content> Deadline: {{ticket.deadLine}}</mat-card-content>
+
+    <mat-card-footer></mat-card-footer>
+  </mat-card>
+</a>
+
+<mat-card class="error" *ngIf="resEror">
+  <mat-card-title>resEror</mat-card-title>
+
+</mat-card>
