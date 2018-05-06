@@ -83,7 +83,7 @@ const init = () => {
                     error: `User with id ${user.id} is not in any team`,
                 });
             }
-            console.log(allTeams);
+            
             return res.send({
                 data: allTeams
             });
@@ -152,7 +152,7 @@ const init = () => {
                 })
             }
             
-            console.log(createdTeam);
+            
 
             try {
                 await userServices.addTeamToUser(createdTeam.teamLeaderId, createdTeam.id);
@@ -162,7 +162,7 @@ const init = () => {
                 })
             }
 
-            console.log(await teamServices.getTeamById(createdTeam.id))
+            console.log(await teamServices.getTeamById(createdTeam.id)); // ? 
 
             return res.send({
                 message: "Team is Created",

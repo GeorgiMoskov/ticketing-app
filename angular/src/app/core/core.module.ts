@@ -18,6 +18,9 @@ import { TeamService } from './teams.service';
 import { GetTeamsByLoggedUserResolver } from './resolvers/get-teams-by-logged-user.resolver';
 import { CanAccessTeam } from './guards/canAccessTeam';
 import { GetTeamByIdResolver } from './resolvers/get-team-by-id.resolver';
+import { TicketService } from './ticket.service';
+import { GetAllAssignToLogedUserResolver } from './resolvers/tickets/get-all-assign-to-loged-user-resolver';
+import { TicketDetailsByIdResolver } from './resolvers/tickets/ticket-details-by-id-resolver';
 
 export function tokenGetter() {
   return localStorage.getItem('token');
@@ -49,7 +52,10 @@ export function tokenGetter() {
     {provide:GetAllUsersResolver, useClass: GetAllUsersResolver},
     {provide:GetAllTeamsResolver, useClass: GetAllTeamsResolver},
     {provide:GetTeamsByLoggedUserResolver, useClass: GetTeamsByLoggedUserResolver},
-    {provide: GetTeamByIdResolver, useClass: GetTeamByIdResolver }
+    {provide: GetTeamByIdResolver, useClass: GetTeamByIdResolver },
+    { provide: TicketService, useClass: TicketService },
+    { provide: GetAllAssignToLogedUserResolver, useClass: GetAllAssignToLogedUserResolver },
+    {provide: TicketDetailsByIdResolver, useClass: TicketDetailsByIdResolver },
   ]
 })
 export class CoreModule { }
