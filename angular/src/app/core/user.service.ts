@@ -7,6 +7,9 @@ import { ToastrService } from 'ngx-toastr';
 import { ResGeneric } from '../models/resGeneric';
 import { User } from '../models/User';
 
+import { resGeneric } from '../models/resGeneric';
+import { User } from '../models/User';
+
 
 @Injectable()
 export class UserService {
