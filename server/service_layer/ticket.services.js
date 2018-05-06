@@ -21,42 +21,45 @@ ticketServices.getAllTicketsOfTeam = async (teamId) => {
     if (!tickets) {
         return null;
     }
-    const teamTickets = tickets.find((ticket) => ticket.teamId = teamId);
+    const teamTickets = tickets.find((ticket) => ticket.teamId && ticket.teamId === teamId);
 
     return teamTickets;
 };
 
 ticketServices.getAllTicketsAssignTo = async (userId) => {
-    const tickets = await ticketData.getAll();
-    if (!tickets) {
-        return null;
-    }
-    const userTickets = tickets.filter((ticket) => ticket.assignToId === userId);
 
-    return userTickets;
-}
+        const tickets = await ticketData.getAll();
 
-ticketServices.getAllTicketsAssignToOfTeam = async (teamId, userId) => {
-    const tickets = await ticketData.getAll();
-    if (!tickets) {
-        return null;
-    }
-    const userTickets = tickets.filter((ticket) => ticket.assignToId === userId && ticket.teamId === teamId);
+        if (!tickets) {
+            return null;
+        }
+        const userTickets = tickets.filter((ticket) => ticket.assignToId && ticket.assignToId === userId);
 
-    return userTickets;
-}
+            return userTickets;
+        }
 
-ticketServices.getTicketById = async (id) => {
-    const ticket = await ticketData.getById(id);
+        ticketServices.getAllTicketsAssignToOfTeam = async (teamId, userId) => {
+            const tickets = await ticketData.getAll();
+            if (!tickets) {
+                return null;
+            }
+            const userTickets = tickets.filter((ticket) => ticket.assignToId && ticket.teamId && 
+                        ticket.assignToId === userId && ticket.teamId === teamId);
 
-    if (!ticket) {
-        return null;
-    }
-    return ticket;
-};
+            return userTickets;
+        }
+
+        ticketServices.getTicketById = async (id) => {
+            const ticket = await ticketData.getById(id);
+
+            if (!ticket) {
+                return null;
+            }
+            return ticket;
+        };
 
 
 
-module.exports = {
-    ticketServices,
-}
+        module.exports = {
+            ticketServices,
+        }

@@ -17,12 +17,12 @@ class TeamsData extends Data {
 
         if (teamSequelize.teamLeader) {
             team.teamLeaderId = teamSequelize.teamLeader.id;
-            team.teamLeaderName = teamSequelize.teamLeader.firstName;
+            team.teamLeaderName = teamSequelize.teamLeader.firstName + ' ' + teamSequelize.teamLeader.lastName;
         }
         if (teamSequelize.users_in_team) {
-            team.users = teamSequelize.users_in_team.map((user)=> user.id);
+            team.users = teamSequelize.users_in_team.map((user) => user.id);
         } else {
-            team.users =[];
+            team.users = [];
         }
 
         return team;
@@ -37,7 +37,11 @@ class TeamsData extends Data {
         }
 
         const team = await this.getById(teamSequelize.id)
-        return team;
+        
+        const resteam = this.convertTeamSequelizeObjToTeamObj(team);
+        return {
+            data: resteam,
+        };
     }
 
     async getAll() {

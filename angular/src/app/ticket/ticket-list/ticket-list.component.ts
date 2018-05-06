@@ -1,12 +1,13 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
+import { MatTableDataSource } from '@angular/material';
+
 import { TicketService } from '../../core/ticket.service';
 import { Ticket } from '../../models/Ticket';
 import { UserService } from '../../core/user.service';
-import { MatTableDataSource } from '@angular/material';
-import { GetAllAssignToLogedUserResolver } from '../../core/resolvers/tickets/get-all-assign-to-loged-user-resolver';
-import { ResGeneric } from '../../models/resGeneric';
+// import { GetAllAssignToLogedUserResolver } from '../../core/resolvers/tickets/get-all-assign-to-loged-user-resolver';
+// import { ResGeneric } from '../../models/resGeneric';
 
 @Component({
   selector: 'app-ticket-list',
@@ -21,7 +22,7 @@ export class TicketListComponent implements OnInit {
   tickets: Ticket[];
   resError: string;
 
-  constructor(private ticketService: TicketService, private userService: UserService, private route: ActivatedRoute, private toastr: ToastrService) {
+  constructor(private ticketService: TicketService, private route: ActivatedRoute, private toastr: ToastrService) {
 
   }
 
@@ -33,10 +34,7 @@ export class TicketListComponent implements OnInit {
         this.resError = data.error;
       });
 
-      if(this.resError) {
-        
-      }
-  }
+    }
 
 
 }

@@ -22,7 +22,7 @@ const init = () => {
             }
 
             return res.send({
-                users: users,
+                data: users,
             });
 
         }
@@ -58,14 +58,18 @@ const init = () => {
                 });
             }
 
-            return res.send(users);
+            return res.send({
+               data: users
+            });
         }
     };
 
 
     const getLogedUserInfo = () => {
         return async (req, res) => {
-            return res.send(req.user);
+            return res.send({
+                data: req.user
+            });
         }
     };
 
@@ -101,7 +105,7 @@ const init = () => {
             }
 
             return res.send({
-                success: 'User was deleted',
+                data: 'User was deleted',
             })
 
 

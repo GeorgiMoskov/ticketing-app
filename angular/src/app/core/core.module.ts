@@ -15,6 +15,7 @@ import { GetAllRolesResolver } from './resolvers/get-all-roles.resolver';
 import { GetAllUsersResolver } from './resolvers/get-all-users.resolver';
 import { TicketService } from './ticket.service';
 import { GetAllAssignToLogedUserResolver } from './resolvers/tickets/get-all-assign-to-loged-user-resolver';
+import { TicketDetailsByIdResolver } from './resolvers/tickets/ticket-details-by-id-resolver';
 
 export function tokenGetter() {
   return localStorage.getItem('token');
@@ -43,7 +44,8 @@ export function tokenGetter() {
     { provide: GetAllRolesResolver, useClass: GetAllRolesResolver },
     { provide: GetAllUsersResolver, useClass: GetAllUsersResolver },
     { provide: TicketService, useClass: TicketService },
-    { provide: GetAllAssignToLogedUserResolver, useClass: GetAllAssignToLogedUserResolver }
+    { provide: GetAllAssignToLogedUserResolver, useClass: GetAllAssignToLogedUserResolver },
+    {provide: TicketDetailsByIdResolver, useClass: TicketDetailsByIdResolver },
   ]
 })
 export class CoreModule { }

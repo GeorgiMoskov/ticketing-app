@@ -7,7 +7,7 @@ import { ToastrService } from 'ngx-toastr';
 import { resUserModel } from '../models/resUserModel';
 import { ResGetAllUsersModel } from '../models/resGetAllUsersModel';
 
-import { resGeneric } from '../models/resGeneric';
+import { ResGeneric } from '../models/ResGeneric';
 import { User } from '../models/User';
 
 
@@ -61,7 +61,7 @@ export class UserService {
   }
 
   public getAllUsers() {
-    return this.http.get <resGeneric<User[]>> ('http://localhost:3001/api/users/all');
+    return this.http.get <ResGeneric<User[]>> ('http://localhost:3001/api/users/all');
   }
 
   

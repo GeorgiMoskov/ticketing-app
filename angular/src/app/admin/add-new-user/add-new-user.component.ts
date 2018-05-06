@@ -29,15 +29,14 @@ export class AddNewUserComponent implements OnInit {
 
   }
 
-  initRoles(){
+  initRoles() {
     const rolesData = this.route.snapshot.data['roles'];
-    console.log(rolesData);
-    if(rolesData.error) {
-      this.toastr.error(rolesData.error, '', {closeButton:true});
-      console.log(rolesData.error);
-    }else {
-      this.rolesNames =rolesData.allRolesNames;
-   };
+
+    if (rolesData.error) {
+      this.toastr.error(rolesData.error, '', { closeButton: true });
+    } else {
+      this.rolesNames = rolesData.allRolesNames;
+    };
   };
 
 

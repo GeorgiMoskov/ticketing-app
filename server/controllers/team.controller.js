@@ -22,7 +22,9 @@ const init = () => {
                 });
             }
 
-            return res.send(allTeams);
+            return res.send({
+                data: allTeams
+            });
         }
     };
 
@@ -57,7 +59,9 @@ const init = () => {
                 });
             }
 
-            return res.send(allTeams);
+            return res.send({
+                data: allTeams
+            });
         }
     };
 
@@ -80,7 +84,9 @@ const init = () => {
                 });
             }
 
-            return res.send(allTeams);
+            return res.send({
+                data: allTeams
+            });
         }
     };
 
@@ -101,7 +107,9 @@ const init = () => {
                 });
             }
 
-            return res.send(team);
+            return res.send({
+                data: team
+            });
         }
     };
 

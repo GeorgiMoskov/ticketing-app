@@ -10,7 +10,7 @@ class UsersData extends Data {
         const user = {};
         user.id = userSequelize.id;
         user.email = userSequelize.email;
-        user.password = userSequelize.password;
+        user.password = userSequelize.password; // TODO make method for UserFOrAPI/ without pass   
         user.firstName = userSequelize.firstName;
         user.lastName = userSequelize.lastName;
         user.role = userSequelize.Role.name;

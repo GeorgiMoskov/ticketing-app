@@ -20,7 +20,7 @@ const init = () => {
 
 
             return res.send({
-                allRolesNames: allRolesNames
+                data: allRolesNames
             });
         }
     }
