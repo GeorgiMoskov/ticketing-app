@@ -1,0 +1,15 @@
+<h3> List of Tickets </h3>
+
+        <mat-card class="tickets" *ngFor="let ticket of tickets">
+            <mat-card-title> {{ticket.description}} </mat-card-title>
+            <mat-card-subtitle> {{ticket.teamId}}</mat-card-subtitle>
+          <a routerLink="/detail/{{ticket.id}}">
+            
+            <p>{{ticket.deadLine}} </p>
+          </a>
+          </mat-card>
+
+          <mat-card class="error" *ngIf="resEror">
+              <mat-card-title>resEror</mat-card-title> 
+
+          </mat-card>

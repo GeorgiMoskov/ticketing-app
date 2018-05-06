@@ -13,6 +13,8 @@ import { UserService } from './user.service';
 import { canAccessAdminPanel } from './guards/canAccessAdminPanel';
 import { GetAllRolesResolver } from './resolvers/get-all-roles.resolver';
 import { GetAllUsersResolver } from './resolvers/get-all-users.resolver';
+import { TicketService } from './ticket.service';
+import { GetAllAssignToLogedUserResolver } from './resolvers/tickets/get-all-assign-to-loged-user-resolver';
 
 export function tokenGetter() {
   return localStorage.getItem('token');
@@ -32,14 +34,16 @@ export function tokenGetter() {
     ToastrModule.forRoot(),
   ],
   providers: [
-    {provide: AuthService, useClass: AuthService},
-    {provide: RoleService, useClass: RoleService},
-    {provide: UserService, useClass: UserService},
-    {provide: IsNotLogged, useClass: IsNotLogged},
-    {provide: IsLogged, useClass: IsLogged},
-    {provide: canAccessAdminPanel, useClass: canAccessAdminPanel},
-    {provide:GetAllRolesResolver, useClass: GetAllRolesResolver},
-    {provide:GetAllUsersResolver, useClass: GetAllUsersResolver},
+    { provide: AuthService, useClass: AuthService },
+    { provide: RoleService, useClass: RoleService },
+    { provide: UserService, useClass: UserService },
+    { provide: IsNotLogged, useClass: IsNotLogged },
+    { provide: IsLogged, useClass: IsLogged },
+    { provide: canAccessAdminPanel, useClass: canAccessAdminPanel },
+    { provide: GetAllRolesResolver, useClass: GetAllRolesResolver },
+    { provide: GetAllUsersResolver, useClass: GetAllUsersResolver },
+    { provide: TicketService, useClass: TicketService },
+    { provide: GetAllAssignToLogedUserResolver, useClass: GetAllAssignToLogedUserResolver }
   ]
 })
 export class CoreModule { }

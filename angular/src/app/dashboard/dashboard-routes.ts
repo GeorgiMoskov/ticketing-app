@@ -4,9 +4,11 @@ import { IsLogged } from '../core/guards/is-logged';
 
 
 export const ROUTES: Routes = [
-    { path: '', component: MainComponent, canActivate: [IsLogged],
+  {
+    path: '', component: MainComponent, canActivate: [IsLogged],
     children: [
-      {path: 'admin', loadChildren: './../admin/admin.module#AdminModule' }
-    ]  
+      { path: 'admin', loadChildren: './../admin/admin.module#AdminModule' },
+      { path: 'tickets', loadChildren: './../ticket/ticket.module#TicketModule' },
+    ]
   },
-  ];
+];
