@@ -19,4 +19,23 @@ require('./routes').init(server, passport);
 
 server.listen(config.PORT);
 
+const {
+    teamServices
+} = require('./service_layer/team.services');
 
+// kor = async () => {
+//     try {
+//         const team = await teamServices.createTeam({
+//             name: "Glue1234",
+//             teamLeaderId: 222,
+//         });
+//         console.log('successfuly');
+//         console.log(team);
+//     } catch (err) {
+//         console.log(err);
+//     }
+// }
+
+// kor().then((kor)=>{
+    
+// })

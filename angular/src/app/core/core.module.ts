@@ -13,6 +13,9 @@ import { UserService } from './user.service';
 import { canAccessAdminPanel } from './guards/canAccessAdminPanel';
 import { GetAllRolesResolver } from './resolvers/get-all-roles.resolver';
 import { GetAllUsersResolver } from './resolvers/get-all-users.resolver';
+import { GetAllTeamsResolver } from './resolvers/get-all-teams.resolver';
+import { TeamService } from './teams.service';
+import { GetTeamsByLoggedUserResolver } from './resolvers/get-teams-by-logged-user.resolver';
 
 export function tokenGetter() {
   return localStorage.getItem('token');
@@ -35,11 +38,14 @@ export function tokenGetter() {
     {provide: AuthService, useClass: AuthService},
     {provide: RoleService, useClass: RoleService},
     {provide: UserService, useClass: UserService},
+    {provide: TeamService, useClass: TeamService},
     {provide: IsNotLogged, useClass: IsNotLogged},
     {provide: IsLogged, useClass: IsLogged},
     {provide: canAccessAdminPanel, useClass: canAccessAdminPanel},
     {provide:GetAllRolesResolver, useClass: GetAllRolesResolver},
     {provide:GetAllUsersResolver, useClass: GetAllUsersResolver},
+    {provide:GetAllTeamsResolver, useClass: GetAllTeamsResolver},
+    {provide:GetTeamsByLoggedUserResolver, useClass: GetTeamsByLoggedUserResolver}
   ]
 })
 export class CoreModule { }

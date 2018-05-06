@@ -1,0 +1,22 @@
+<mat-card class="create-team-wrapper">
+  <mat-card-title>Create new team</mat-card-title>
+  <form [formGroup]="createTeamForm" (ngSubmit)="onSubmit()">
+    <mat-form-field>
+      <input matInput placeholder="Enter team name" formControlName="teamName">
+      <mat-error *ngIf="teamName.invalid">Invalid team name</mat-error>
+    </mat-form-field>
+    
+    <mat-form-field>
+      <input matInput placeholder="Team Leader" disabled [value]="currentlyLoggedUserEmail" >
+    </mat-form-field>
+
+    <mat-form-field>
+      <textarea matInput formControlName="teamDescription" 
+      placeholder="Enter team description" matTextareaAutosize matAutosizeMinRows="2"
+      matAutosizeMaxRows="10"></textarea>
+    </mat-form-field>
+
+    <button mat-raised-button [disabled]="!createTeamForm.valid" color="primary" type="submit">Create new team</button>
+  </form>
+
+</mat-card>

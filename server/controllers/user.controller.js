@@ -108,10 +108,49 @@ const init = () => {
                 data: 'User was deleted',
             })
 
-
-
         }
     }
+
+    const addTeamToUser = () => {
+        return async (req, res) => {
+            const userEmail = req.body.userEmail;
+
+            try{
+               const userObj = await userServices.getUserByEmail(userEmail);
+            } catch(err){
+                return res.send({
+                    error: err,
+                })
+            }
+
+            if(!userObj){
+                return res.send({
+                    error: "This user doesn't exist",
+                })
+            }
+
+            try{
+                const teamObj = await teamServices.getUserByEmail(userEmail);
+             } catch(err){
+                 return res.send({
+                     error: err,
+                 })
+             }
+ 
+             if(!userObj){
+                 return res.send({
+                     error: "This user doesn't exist",
+                 })
+             }
+             
+            await userServices.addTeamToUser()
+            return res.send({
+                data: req.user
+            });
+        }
+    };
+
+
 
     return {
         getAllUsers,

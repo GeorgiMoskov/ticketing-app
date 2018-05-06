@@ -7,17 +7,6 @@ import { Component, OnInit } from '@angular/core';
 })
 export class AdminPanelComponent implements OnInit {
 
-  navLinks = [
-    {
-      path: 'add-user',
-      label: 'Create New User'
-  },
-  {
-    path: 'add-user',
-    label: 'Smth Else with User'
-  },
-  ]
-
   constructor() { }
 
   ngOnInit() {

@@ -64,6 +64,21 @@ class TeamsData extends Data {
         return team;
     }
 
+    async getByName(name) {
+        const teamSequelize = await this.Model.findOne({
+            where: {
+                name: name,
+            },
+            include: this.includes,
+        });
+
+        if(!teamSequelize){
+            return null;
+        }else{
+            return this.convertTeamSequelizeObjToTeamObj(teamSequelize);
+        }
+    }
+
     async update(obj, id) {
         const teamSequelize = await this.updateElement(obj, id);
 
@@ -82,6 +97,7 @@ class TeamsData extends Data {
 
         return null;
     }
+
 
 }
 

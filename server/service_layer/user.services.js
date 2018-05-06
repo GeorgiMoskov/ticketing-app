@@ -11,6 +11,10 @@ const {
     roleServices
 } = require('./role.services');
 
+const {
+    teamServices
+} = require('./team.services');
+
 const userServices = {};
 
 userServices.getAllUsers = async () => {
@@ -128,6 +132,23 @@ userServices.deleteUserById = async (userId) => {
     const deletedUser = await userData.delete(userId);
 
     console.log(deletedUser);
+}
+
+userServices.addTeamToUser = async (userId, teamId) => {
+    if(!await userData.getById(userId)){
+        throw "This user doesn't exist";
+    }
+
+    if(!await teamServices.getTeamById(teamId)){
+        throw "This team doesn't exist";
+    }
+
+    const user = await userData.addUserToTeam(userId, teamId);
+
+    if(!user) {
+        throw "This user is allready in this team"
+    }
+    return user;
 }
 
 module.exports = {

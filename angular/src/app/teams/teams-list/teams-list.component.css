@@ -1,0 +1,8 @@
+.teams-wrapper{
+  text-align: center;
+}
+app-team-item{
+  display: inline-block;   
+  margin: 20px;
+  vertical-align: top;
+}

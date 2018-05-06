@@ -8,13 +8,12 @@ import {
   Observable
 } from 'rxjs/Observable';
 import {
-  ResAccessTokenModel
-} from '../models/core/resAccessTokenModel';
-import {
   HttpClient
 } from '@angular/common/http';
 import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
+import { ResGeneric } from '../models/resGeneric';
+import { Token } from '../models/core/Token';
 
 @Injectable()
 export class AuthService {
@@ -44,14 +43,15 @@ export class AuthService {
       password: password
     };
 
-    this.http.post <ResAccessTokenModel> ('http://localhost:3001/auth/api/login', user)
-      .subscribe((data) => {
+    this.http.post <ResGeneric<Token>> ('http://localhost:3001/auth/api/login', user)
+      .subscribe((resData) => {
 
-        if(data.error) {
-          this.toastr.error(data.error, '', {closeButton:true});
-          console.log(data.error);
+        if(resData.error) {
+          this.toastr.error(resData.error, '', {closeButton:true});
+          console.log(resData.error);
         } else {
-          localStorage.setItem('token', data.token);
+          console.log(resData);
+          localStorage.setItem('token', resData.data.token);
           this.router.navigate(['/dashboard']);
           this.toastr.success('You are logged in!', '', {closeButton:true});
         };

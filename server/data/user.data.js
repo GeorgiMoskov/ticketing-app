@@ -81,7 +81,7 @@ class UsersData extends Data {
             return null;
         }
 
-        const user = await this.getById(id)
+        const user = await this.getById(id);
         return user;
     }
 
@@ -90,6 +90,28 @@ class UsersData extends Data {
         await this.deleteElement(id);
 
         return null;
+    }
+
+    async addUserToTeam(userId,teamId){
+        let userSequelize = await this.Model.findOne({
+            where: {
+                id: userId,
+            },
+            include: this.includes,
+        });
+
+        if (!userSequelize) {
+            return null;
+        }
+
+       const dataIfSet = await userSequelize.addTeam(teamId);
+       
+        if(dataIfSet.length <= 0){
+            return null;
+        }
+
+        const user = await this.getById(userId);
+        return user;
     }
 
 

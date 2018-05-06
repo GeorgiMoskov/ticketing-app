@@ -8,8 +8,9 @@ import {
 
 import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
-import { ResGetAllRolesnamesModel } from '../models/resGetAllRolesnamesModel';
 import { Observable } from 'rxjs/Observable';
+import { ResGeneric } from '../models/resGeneric';
+import { Role } from '../models/Role';
 
 @Injectable()
 export class RoleService {
@@ -17,7 +18,7 @@ export class RoleService {
   constructor(private router: Router, private http: HttpClient,  private toastr: ToastrService) {}
   
   public getAllRoles() {  // NEED FIX
-     return this.http.get <ResGetAllRolesnamesModel>('http://localhost:3001/api/roles/getAllRoles')
+    return this.http.get <ResGeneric<Role[]>>('http://localhost:3001/api/roles/getAllRoles');
       
     };
 

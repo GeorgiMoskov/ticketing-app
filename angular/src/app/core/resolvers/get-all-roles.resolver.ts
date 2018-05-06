@@ -8,18 +8,17 @@ import {
   Observable
 } from "rxjs/Observable";
 import {
-  ResGetAllRolesnamesModel
-} from "../../models/resGetAllRolesnamesModel";
-import {
   RoleService
 } from "../role.service";
 import {
   ToastrService
 } from "ngx-toastr";
+import { ResGeneric } from "../../models/resGeneric";
+import { Role } from "../../models/Role";
 
 
 @Injectable()
-export class GetAllRolesResolver implements Resolve < Observable < ResGetAllRolesnamesModel >> {
+export class GetAllRolesResolver implements Resolve < Observable <ResGeneric<Role[]>> > {
   constructor(private roleService: RoleService, private toastr: ToastrService) {}
 
   resolve() {

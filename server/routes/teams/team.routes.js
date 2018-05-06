@@ -22,6 +22,11 @@ const init = (server, passport) => {
         session: false
     }), controller.getTeamById());
 
+    router.post('/createTeam', passport.authenticate('jwt', {
+        session: false
+    }), controller.createTeam());
+
+
     server.use('/api/teams', router);
 
 }

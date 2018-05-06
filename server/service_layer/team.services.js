@@ -43,6 +43,17 @@ teamServices.getTeamById = async (teamId) => {
     return team;
 
 }
+
+teamServices.getTeamByName = async (teamName) => {
+    const team = await teamData.getByName(teamName);
+
+    if (!team) {
+        return null;
+    }
+    return team;
+
+}
+
 teamServices.isTeamLeader = async (teamId, userId) => {
     const team = await teamData.getById(teamId);
 
@@ -56,7 +67,14 @@ teamServices.isTeamLeader = async (teamId, userId) => {
 
 teamServices.isSuchTeam = async (teamId) => {
 
-    return teamData.isExistInDb(teamId);
+    return await teamData.isExistInDb(teamId);
+}
+
+teamServices.createTeam = async (teamObj) => {
+    if(await teamData.getByName(teamObj.name)){
+        throw "Team with this name allready exists"
+    }
+    return await teamData.create(teamObj);
 }
 
 module.exports = {

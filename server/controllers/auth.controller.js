@@ -51,13 +51,16 @@ const init = () => {
                 firstName: userFound.firstName,
                 lastName: userFound.lastName,
                 role: userFound.role,
-                privileges: userFound.privileges
+                privileges: userFound.privileges,
+                teams: userFound.teams
             };
 
             const token = jwt.encode(payload, config.JWT_SECRET);
 
             return res.send({
-                data: token,
+                data: {
+                    token: token,
+                },
             });
         }
     }
@@ -88,7 +91,7 @@ const init = () => {
                 })
             } catch (er) {
                 console.log(er);
-                res.status(400).send({
+                res.send({
                     error: er,
                 })
             }

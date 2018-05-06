@@ -4,6 +4,8 @@ import { RoleService } from '../../core/role.service';
 import { ToastrService } from 'ngx-toastr';
 import { ActivatedRoute } from '@angular/router';
 import { UserService } from '../../core/user.service';
+import { ResGeneric } from '../../models/resGeneric';
+import { Role } from '../../models/Role';
 
 @Component({
   selector: 'app-add-new-user',
@@ -19,7 +21,7 @@ export class AddNewUserComponent implements OnInit {
   public firstName: AbstractControl;
   public lastName: AbstractControl;
 
-  public rolesNames;
+  public rolesNames: Role[];
 
   constructor(private formBuilder: FormBuilder, private userService: UserService, private route: ActivatedRoute, private toastr: ToastrService) { }
 
@@ -30,13 +32,13 @@ export class AddNewUserComponent implements OnInit {
   }
 
   initRoles(){
-    const rolesData = this.route.snapshot.data['roles'];
-    console.log(rolesData);
-    if(rolesData.error) {
-      this.toastr.error(rolesData.error, '', {closeButton:true});
-      console.log(rolesData.error);
+    const resData: ResGeneric<Role[]> = this.route.snapshot.data['roles'];
+    console.log(resData);
+    if(resData.error) {
+      this.toastr.error(resData.error, '', {closeButton:true});
+      console.log(resData.error);
     }else {
-      this.rolesNames =rolesData.allRolesNames;
+      this.rolesNames = resData.data;
    };
   };
 
@@ -68,8 +70,6 @@ export class AddNewUserComponent implements OnInit {
         firstName: this.firstName.value,
         lastName: this.lastName.value,
       };
-
-      console.log(userToCreate);
 
       this.userService.registerNewUser(userToCreate);
     }

@@ -3,6 +3,8 @@ import {MatTableDataSource} from '@angular/material';
 import { ActivatedRoute } from '@angular/router';
 import { UserService } from '../../core/user.service';
 import { ToastrService } from 'ngx-toastr';
+import { User } from '../../models/User';
+import { ResGeneric } from '../../models/resGeneric';
 
 @Component({
   selector: 'app-delete-user',
@@ -13,7 +15,7 @@ export class DeleteUserComponent implements OnInit {
 
   displayedColumns = ['id', 'email', 'firstName', 'lastName', 'role', 'delete'];
   dataSource;
-  users;
+  users: User[];
   currentLoggedUserEmail;
 
   constructor( private userService: UserService, private route: ActivatedRoute, private toastr: ToastrService ) { }
@@ -25,12 +27,12 @@ export class DeleteUserComponent implements OnInit {
   }
 
   initUsers() {
-    const usersData = this.route.snapshot.data['users'];
-    if(usersData.error){
-      this.toastr.error(usersData.error, '', {closeButton:true});
-      console.log(usersData.error);
+    const resData: ResGeneric<User[]> = this.route.snapshot.data['users'];
+    if(resData.error){
+      this.toastr.error(resData.error, '', {closeButton:true});
+      console.log(resData.error);
     }else{
-      this.users = usersData.users;
+      this.users = resData.data;
       console.log(this.users);
     }
 
@@ -43,13 +45,11 @@ export class DeleteUserComponent implements OnInit {
   }
 
   deleteUser(userId) {
-    this.userService.deleteUser(userId).subscribe((data) => {
-      console.log('tva se vurna!!');
-      if(data.error) {
-        this.toastr.error(data.error, '', {closeButton:true});
-        console.log(data.error);
+    this.userService.deleteUser(userId).subscribe((resData: ResGeneric<string>) => {
+      if(resData.error) {
+        this.toastr.error(resData.error, '', {closeButton:true});
+        console.log(resData.error);
       } else {
-        console.log(data.success);
         this.toastr.success('User was deleted!', '', {closeButton:true});
         this.users = this.users.filter((userObj)=> userObj.id != userId);
         this.dataSource = new MatTableDataSource(this.users);

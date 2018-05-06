@@ -4,8 +4,8 @@ import {
 import { JwtHelperService } from '@auth0/angular-jwt';
 import { HttpClient } from '@angular/common/http';
 import { ToastrService } from 'ngx-toastr';
-import { resUserModel } from '../models/resUserModel';
-import { ResGetAllUsersModel } from '../models/resGetAllUsersModel';
+import { ResGeneric } from '../models/resGeneric';
+import { User } from '../models/User';
 
 
 @Injectable()
@@ -31,19 +31,28 @@ export class UserService {
   public getCurrentLoggedUserPrivileges() {
     const decodedToken = this.jwtService.decodeToken(localStorage.getItem('token'));
     return decodedToken.privileges;
+  };
+
+  public getCurrentLoggedUserId() {
+    const decodedToken = this.jwtService.decodeToken(localStorage.getItem('token'));
+    return decodedToken.sub;
+  }
+
+  public getCurrentLoggedUserTeamsIds() {
+    const decodedToken = this.jwtService.decodeToken(localStorage.getItem('token'));
+    return decodedToken.teams;
   }
 
   public registerNewUser(userToCreate) {
-    this.http.post <resUserModel> ('http://localhost:3001/auth/api/register', {userToCreate: userToCreate})
-      .subscribe((data) => {
-        console.log('tva se vurna!!');
-        console.log(data);
-        if(data.error) {
-          this.toastr.error(data.error, '', {closeButton:true});
-          console.log(data.error);
+    this.http.post <ResGeneric<User>> ('http://localhost:3001/auth/api/register', {userToCreate: userToCreate})
+      .subscribe((resData) => {
+        console.log(resData);
+        if(resData.error) {
+          this.toastr.error(resData.error, '', {closeButton:true});
+          console.log(resData.error);
         } else {
-          console.log(data.user);
-          this.toastr.success('New User is registered!', '', {closeButton:true});
+          console.log(resData.data);
+          this.toastr.success('User with email: '+ resData.data.email +' is registered!', '', {closeButton:true});
         };
       }, 
       (err) => {
@@ -54,11 +63,11 @@ export class UserService {
   }
 
   public deleteUser(userId) {
-    return this.http.post<{error:string, success:string}> ('http://localhost:3001/api/users/deleteUser', {userId: userId});
+    return this.http.post<ResGeneric<string>> ('http://localhost:3001/api/users/deleteUser', {userId: userId});
   }
 
   public getAllUsers() {
-    return this.http.get <ResGetAllUsersModel> ('http://localhost:3001/api/users/all');
+    return this.http.get <ResGeneric<User[]>> ('http://localhost:3001/api/users/all');
   }
 
   
