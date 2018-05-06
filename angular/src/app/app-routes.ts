@@ -1,5 +1,4 @@
 import { Routes, Resolve } from '@angular/router';
-import { HomeComponent } from './home/home.component';
 import { Eror404Component } from './eror404/eror404.component';
 import { Inject } from '@angular/core';
 

@@ -1,4 +1,4 @@
-export class resGeneric<T> {
+export class ResGeneric<T> {
     public data: T;
     public error: string;
 }
