@@ -1,7 +1,5 @@
 <mat-card class="example-card">
 
-
-
   <mat-card-header>
     <div mat-card-avatar><i class="material-icons">group</i></div>
     <mat-card-title>Team: <span class="team-title" >{{ team.name }}</span></mat-card-title>
@@ -15,6 +13,6 @@
     </p>
   </mat-card-content>
   <mat-card-actions>
-    <button mat-button *ngIf="team.users.includes(currentLoggedUserId)"  class="view-team-btn">View Team</button>
+    <button mat-button *ngIf="team.users.includes(currentLoggedUserId) || canViewAllTeam" (click) = "btnClicked(team.id)"  class="view-team-btn">View Team</button>
   </mat-card-actions>
 </mat-card>

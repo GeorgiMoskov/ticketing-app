@@ -22,6 +22,10 @@ export class TeamService {
      return this.http.get <ResGeneric<Team[]>> ('http://localhost:3001/api/teams/All')
     };
 
+  public getTeamById(teamId) {
+    return this.http.get <ResGeneric<Team>> ('http://localhost:3001/api/teams/'+teamId);
+  }
+
   public getTeamsByLoggedUser() {
     return this.http.get <ResGeneric<Team[]>> ('http://localhost:3001/api/teams/allByLogedUser')
   }

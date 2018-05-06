@@ -3,7 +3,9 @@
 }
 
 .example-card * {
-    display: inline-block;
+    display: block;
+    margin: 0 auto;
+    margin-top: 10px;
     max-width: 100%;
     word-wrap: break-word !important; 
 }

@@ -1,0 +1,17 @@
+p{
+  font-size: 15px;
+}
+
+.team-title{
+  font-size: 18px;
+  font-weight: bold;
+  color:#3f51b5;
+}
+
+.team-leader{
+  color:#3f51b5;
+}
+
+.text-label{
+  font-weight: bold;
+}

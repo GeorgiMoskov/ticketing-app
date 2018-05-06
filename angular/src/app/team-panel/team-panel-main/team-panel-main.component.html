@@ -1,0 +1,18 @@
+
+<p><span class="text-label">Team:</span> <span class="team-title">{{ team.name }}</span></p>
+<p *ngIf="team.teamLeaderName"><span class="text-label">team leader:</span> <span class="team-leader">{{ team.teamLeaderName }}</span></p>
+<p *ngIf="team.description" > <span class="text-label">Description:</span> {{ team.description }}</p>
+<nav mat-tab-nav-bar>
+  <a mat-tab-link [routerLink]=" 'all-team-tickets' " routerLinkActive #rla1="routerLinkActive" [active]="rla1.isActive">
+    All team Tickets
+  </a>
+  <a mat-tab-link [routerLink]=" 'my-team-tickets' " routerLinkActive #rla2="routerLinkActive" [active]="rla2.isActive">
+    My Tickets in team
+  </a>
+  <a mat-tab-link [routerLink]=" 'edit-team' " routerLinkActive #rla3="routerLinkActive" [active]="rla3.isActive">
+    Edit Team
+  </a>
+
+</nav>
+
+<router-outlet></router-outlet>

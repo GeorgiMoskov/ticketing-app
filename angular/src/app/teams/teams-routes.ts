@@ -17,3 +17,5 @@ export const ROUTES: Routes =[
         // {path: 'delete-user', component: DeleteUserComponent, resolve: {users: GetAllUsersResolver} }
     ]},
 ]
+
+// let id = this.route.snapshot.paramMap.get('id');
