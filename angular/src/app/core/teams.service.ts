@@ -16,18 +16,18 @@ import { Team } from '../models/Team';
 @Injectable()
 export class TeamService {
 
-  constructor(private router: Router, private http: HttpClient,  private toastr: ToastrService) {}
-  
-  public getAllTeams() {  
-     return this.http.get <ResGeneric<Team[]>> ('http://localhost:3001/api/teams/All')
-    };
+  constructor(private router: Router, private http: HttpClient, private toastr: ToastrService) { }
+
+  public getAllTeams() {
+    return this.http.get<ResGeneric<Team[]>>('http://localhost:3001/api/teams/All');
+  };
 
   public getTeamsByLoggedUser() {
-    return this.http.get <ResGeneric<Team[]>> ('http://localhost:3001/api/teams/allByLogedUser')
+    return this.http.get<ResGeneric<Team[]>>('http://localhost:3001/api/teams/allByLogedUser');
   }
 
   public createTeam(teamObj) {
-    return this.http.post <ResGeneric<string>> ('http://localhost:3001/api/teams/createTeam', teamObj);
-      
+    return this.http.post<ResGeneric<string>>('http://localhost:3001/api/teams/createTeam', teamObj);
+
   }
 }

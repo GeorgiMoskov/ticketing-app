@@ -27,8 +27,8 @@ export class TicketService {
         return this.http.get<ResGeneric<Ticket[]>>(this.apiUrl+'allAssignTo');
     };
 
-        public getTicketDetailById(id: number) { 
-            const ticket = this.http.get<ResGeneric<TicketDetail>>(this.apiUrl + id);
+    public getTicketDetailById(id: number) { 
+        const ticket = this.http.get<ResGeneric<TicketDetail>>(this.apiUrl + id);
         return ticket;
     };
 
