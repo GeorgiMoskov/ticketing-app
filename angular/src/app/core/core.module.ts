@@ -19,9 +19,12 @@ import { GetTeamsByLoggedUserResolver } from './resolvers/get-teams-by-logged-us
 import { CanAccessTeam } from './guards/canAccessTeam';
 import { GetTeamByIdResolver } from './resolvers/get-team-by-id.resolver';
 import { TicketService } from './ticket.service';
-import { GetAllAssignToLogedUserResolver } from './resolvers/tickets/get-all-assign-to-loged-user-resolver';
+import { GetAllAssignToLoggedUserResolver } from './resolvers/tickets/get-all-assign-to-logged-user-resolver';
 import { TicketDetailsByIdResolver } from './resolvers/tickets/ticket-details-by-id-resolver';
 import { GetAllTicketsOfTeamResolver } from './resolvers/tickets/get-all-tickets-of-team';
+import { GetAllAssignToTicketsOfLoggedUserInTeamResolver } from './resolvers/tickets/get-all-assign-to-logged-user-in-team-resolver';
+import { GetAllTicketsRequestedByLoggedUserResolver } from './resolvers/tickets/get-all-logged-user-requester-resolver';
+
 
 
 export function tokenGetter() {
@@ -56,10 +59,11 @@ export function tokenGetter() {
     { provide: GetTeamsByLoggedUserResolver, useClass: GetTeamsByLoggedUserResolver },
     { provide: GetTeamByIdResolver, useClass: GetTeamByIdResolver },
     { provide: TicketService, useClass: TicketService },
-    { provide: GetAllAssignToLogedUserResolver, useClass: GetAllAssignToLogedUserResolver },
+    { provide: GetAllAssignToLoggedUserResolver, useClass: GetAllAssignToLoggedUserResolver },
     { provide: TicketDetailsByIdResolver, useClass: TicketDetailsByIdResolver },
     { provide: GetAllTicketsOfTeamResolver, useClass: GetAllTicketsOfTeamResolver },
-
+    { provide: GetAllAssignToTicketsOfLoggedUserInTeamResolver, useClass: GetAllAssignToTicketsOfLoggedUserInTeamResolver },
+    { provide: GetAllTicketsRequestedByLoggedUserResolver, useClass: GetAllTicketsRequestedByLoggedUserResolver },
   ]
 })
 export class CoreModule { }

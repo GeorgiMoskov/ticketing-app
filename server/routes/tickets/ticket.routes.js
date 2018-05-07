@@ -30,9 +30,14 @@ const init = (server, passport) => {
         session: false
     }), controller.getAssignToUserOfTeam());
 
-    router.get('/:ticketId', passport.authenticate('jwt', {
+    router.get('/requester', passport.authenticate('jwt', {
+        session: false
+    }), controller.getAllTicketsRequester());
+
+    router.get('detail/:ticketId', passport.authenticate('jwt', {
         session: false
     }), controller.getTicketById());
+
 
     server.use('/api/tickets', router);
 

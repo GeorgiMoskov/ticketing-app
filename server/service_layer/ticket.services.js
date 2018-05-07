@@ -31,7 +31,17 @@ ticketServices.getAllTicketsAssignTo = async (userId) => {
     if (!tickets) {
         return null;
     }
-    const userTickets = tickets.filter((ticket) => ticket.assignToId === userId);
+    const userTickets = tickets.filter((ticket) => ticket.assignToId && ticket.assignToId === userId);
+
+    return userTickets;
+}
+
+ticketServices.getAllTicketsRequester = async (userId) => {
+    const tickets = await ticketData.getAll();
+    if (!tickets) {
+        return null;
+    }
+    const userTickets = tickets.filter((ticket) =>  ticket.requesterId && ticket.requesterId === userId);
 
     return userTickets;
 }

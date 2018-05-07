@@ -195,6 +195,21 @@ const init = () => {
         }
     }
 
+    const getAllTicketsRequester = () => {
+        return async (req, res) => {
+            const allTickets = await ticketServices.getAllTicketsRequester(req.user.id);
+
+            if (!allTickets || allTickets.length === 0) {
+                return res.send({
+                    error: `There is no tickets requested by ${req.user.firstName} ${req.user.lastName}`,
+                });
+            }
+            return res.send({
+                data: allTickets
+            });
+        }
+    };
+
     const getTicketById = () => {
         return async (req, res) => {
             // is ticketId valid 
@@ -243,7 +258,8 @@ const init = () => {
         getAssignToOfTeam,
         getAssignToUser,
         getAssignToUserOfTeam,
-        getTicketById
+        getTicketById,
+        getAllTicketsRequester
     }
 };
 module.exports = {

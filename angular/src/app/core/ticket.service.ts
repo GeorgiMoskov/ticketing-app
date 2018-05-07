@@ -22,12 +22,12 @@ export class TicketService {
         return this.http.get<ResGeneric<Ticket[]>>('http://localhost:3001/api/tickets/all');
     };
 
-    public getAllAssignTicketsOfLogedUser() {  
+    public getAllAssignTicketsOfLoggedUser() {  
         return this.http.get<ResGeneric<Ticket[]>>('http://localhost:3001/api/tickets/allAssignTo');
     };
 
     public getTicketDetailById(ticketId) { 
-         const ticket = this.http.get<ResGeneric<TicketDetail>>('http://localhost:3001/api/tickets/' + ticketId);
+         const ticket = this.http.get<ResGeneric<TicketDetail>>('http://localhost:3001/api/tickets/detail/' + ticketId);
         return ticket;
     };
 
@@ -36,4 +36,13 @@ export class TicketService {
         return tickets;
     }
 
+    public getAllAssignTicketsOfLoggedUserInTeam(teamId) {
+        const tickets = this.http.get<ResGeneric<Ticket[]>>('http://localhost:3001/api/tickets/allAssignTo/team/' + teamId);
+        return tickets;
+    }
+
+    public getAllRequesterTicketsOfLoggedUser() {
+        const tickets = this.http.get<ResGeneric<Ticket[]>>('http://localhost:3001/api/tickets/requester');
+        return tickets;
+    }
 }
