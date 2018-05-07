@@ -2,6 +2,7 @@ const validator = require('validator');
 
 const {
     teamData,
+    userData
 } = require('./../data');
 
 const {userServices } = require('./user.services');
@@ -75,6 +76,26 @@ teamServices.createTeam = async (teamObj) => {
         throw "Team with this name allready exists"
     }
     return await teamData.create(teamObj);
+}
+
+teamServices.updateTeamLeader = async(userId, teamId) =>{
+    if(!await userData.getById(userId)){
+        throw "This user doesn't exist";
+    }
+
+    if(!await teamServices.getTeamById(teamId)){
+        throw "This team doesn't exist";
+    }
+
+    try{
+        await teamData.update(
+            {
+                teamLeaderId: +userId,
+            }, teamId ); 
+    } catch(err){
+        throw err;
+    }
+    return 'New Team leader is set';
 }
 
 module.exports = {

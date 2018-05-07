@@ -23,6 +23,10 @@ const {
     teamServices
 } = require('./service_layer/team.services');
 
+
+// teamServices.updateTeamLeader(5,2);
+
+
 // kor = async () => {
 //     try {
 //         const team = await teamServices.createTeam({

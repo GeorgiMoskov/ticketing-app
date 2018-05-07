@@ -71,6 +71,22 @@ export class UserService {
     return this.http.get <ResGeneric<User[]>> ('http://localhost:3001/api/users/all');
   }
 
+  public adUserByIdToTeam(userId,teamId) {
+    return this.http.post <ResGeneric<string>> ('http://localhost:3001/api/users/addTeamToUserById', {userId: userId, teamId: teamId });
+  }
+
+  public removeUserFromTeam(userId,teamId) {
+    return this.http.post <ResGeneric<string>> ('http://localhost:3001/api/users/removeUserFromTeamById', {userId: userId, teamId: teamId });
+  }
+
+  // public adUserByIdToTeam(userId,teamId) {
+  //   return this.http.post <ResGeneric<string>> ('http://localhost:3001/api/users/addTeamToUserById', {userId: userId, teamId: teamId });
+  // }
+
+  // public getAllUsersOfTeamId(teamId){
+  //   return this.http.get <ResGeneric<User[]>> ('http://localhost:3001/api//allOfTeam/:teamId');
+  // }
+
   
 
 }

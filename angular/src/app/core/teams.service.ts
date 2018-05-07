@@ -32,6 +32,13 @@ export class TeamService {
 
   public createTeam(teamObj) {
     return this.http.post<ResGeneric<string>>('http://localhost:3001/api/teams/createTeam', teamObj);
+  }
 
+  public changeTeamLeaderOfTeam(userId,teamId) {
+    return this.http.post<ResGeneric<string>>('http://localhost:3001/api/teams/setTeamLeader',
+     {
+       userId: userId,
+       teamId: teamId,
+      });
   }
 }

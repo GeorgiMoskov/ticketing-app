@@ -9,7 +9,7 @@ export const ROUTES: Routes = [
     children: [
       {path: 'teams', loadChildren: './../teams/teams.module#TeamsModule'},
       {path: 'admin', loadChildren: './../admin/admin.module#AdminModule' },
-      { path: 'tickets', loadChildren: './../ticket/ticket.module#TicketModule' },
+      {path: 'tickets', loadChildren: './../ticket/ticket.module#TicketModule' },
       {path: 'team-panel/:id', loadChildren: './../team-panel/team-panel.module#TeamPanelModule'},
     ]  
   },

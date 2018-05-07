@@ -21,6 +21,8 @@ import { GetTeamByIdResolver } from './resolvers/get-team-by-id.resolver';
 import { TicketService } from './ticket.service';
 import { GetAllAssignToLogedUserResolver } from './resolvers/tickets/get-all-assign-to-loged-user-resolver';
 import { TicketDetailsByIdResolver } from './resolvers/tickets/ticket-details-by-id-resolver';
+import { CanEditTeam } from './guards/can-edit-team';
+import { TeamDataCommunication } from './team-service-communication/team-data-communication';
 
 export function tokenGetter() {
   return localStorage.getItem('token');
@@ -46,6 +48,8 @@ export function tokenGetter() {
     {provide: TeamService, useClass: TeamService},
     {provide: IsNotLogged, useClass: IsNotLogged},
     {provide: CanAccessTeam, useClass: CanAccessTeam},
+    CanEditTeam,
+    TeamDataCommunication,
     {provide: IsLogged, useClass: IsLogged},
     {provide: canAccessAdminPanel, useClass: canAccessAdminPanel},
     {provide:GetAllRolesResolver, useClass: GetAllRolesResolver},

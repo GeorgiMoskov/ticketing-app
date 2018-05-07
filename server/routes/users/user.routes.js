@@ -13,8 +13,10 @@ const userController =  require('./../../controllers/user.controller');
 
         router.post('/deleteUser', passport.authenticate('jwt', { session: false }), controller.deleteUsersById());
 
-        // router.post('/addTeamToUser', passport.authenticate('jwt', { session: false }), )
-
+        router.post('/addTeamToUserById', passport.authenticate('jwt', { session: false }), controller.addTeamToUser());
+        
+        router.post('/removeUserFromTeamById', passport.authenticate('jwt', { session: false }), controller.removeUserFromTeam());
+        
         server.use('/api/users', router);
 
 }

@@ -4,4 +4,5 @@ export class Team {
     public description: string;
     public users: number[];
     public teamLeaderName: string;
+    public teamLeaderId: number;
 }

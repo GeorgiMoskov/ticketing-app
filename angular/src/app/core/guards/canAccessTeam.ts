@@ -24,10 +24,8 @@ export class CanAccessTeam implements CanActivate {
           val = true;
         } else{
           let teamId = route.paramMap.get('id');
-          console.log(teamId);
           const canAccess = response.data.find(teamObj=>{
             if(teamObj.id == +teamId){
-              console.log(teamObj.id);
               return true;
             }   
           });
