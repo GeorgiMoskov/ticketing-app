@@ -21,7 +21,7 @@ ticketServices.getAllTicketsOfTeam = async (teamId) => {
     if (!tickets) {
         return null;
     }
-    const teamTickets = tickets.find((ticket) => ticket.teamId = teamId);
+    const teamTickets = tickets.filter((ticket) => ticket.teamId && ticket.teamId === teamId);
 
     return teamTickets;
 };

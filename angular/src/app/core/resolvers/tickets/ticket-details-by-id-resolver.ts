@@ -9,10 +9,10 @@ import { TicketDetail } from "../../../models/TicketDetail";
 
 @Injectable()
 export class TicketDetailsByIdResolver implements Resolve<Observable<ResGeneric<TicketDetail>>> {
-    constructor(private ticketService: TicketService, private route: ActivatedRoute, 
-    private toastr: ToastrService) { }
+    constructor(private ticketService: TicketService, private toastr: ToastrService) { }
 
-    resolve(routeSn: ActivatedRouteSnapshot, rstate: RouterStateSnapshot) {
-        return this.ticketService.getTicketDetailById(+routeSn.paramMap.get('id'));
+    resolve(route: ActivatedRouteSnapshot) {
+        const id = route.paramMap.get('ticketId');
+        return this.ticketService.getTicketDetailById(id);
     }
 }

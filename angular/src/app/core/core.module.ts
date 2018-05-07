@@ -21,6 +21,8 @@ import { GetTeamByIdResolver } from './resolvers/get-team-by-id.resolver';
 import { TicketService } from './ticket.service';
 import { GetAllAssignToLogedUserResolver } from './resolvers/tickets/get-all-assign-to-loged-user-resolver';
 import { TicketDetailsByIdResolver } from './resolvers/tickets/ticket-details-by-id-resolver';
+import { GetAllTicketsOfTeamResolver } from './resolvers/tickets/get-all-tickets-of-team';
+
 
 export function tokenGetter() {
   return localStorage.getItem('token');
@@ -40,22 +42,24 @@ export function tokenGetter() {
     ToastrModule.forRoot(),
   ],
   providers: [
-    {provide: AuthService, useClass: AuthService},
-    {provide: RoleService, useClass: RoleService},
-    {provide: UserService, useClass: UserService},
-    {provide: TeamService, useClass: TeamService},
-    {provide: IsNotLogged, useClass: IsNotLogged},
-    {provide: CanAccessTeam, useClass: CanAccessTeam},
-    {provide: IsLogged, useClass: IsLogged},
-    {provide: canAccessAdminPanel, useClass: canAccessAdminPanel},
-    {provide:GetAllRolesResolver, useClass: GetAllRolesResolver},
-    {provide:GetAllUsersResolver, useClass: GetAllUsersResolver},
-    {provide:GetAllTeamsResolver, useClass: GetAllTeamsResolver},
-    {provide:GetTeamsByLoggedUserResolver, useClass: GetTeamsByLoggedUserResolver},
-    {provide: GetTeamByIdResolver, useClass: GetTeamByIdResolver },
+    { provide: AuthService, useClass: AuthService },
+    { provide: RoleService, useClass: RoleService },
+    { provide: UserService, useClass: UserService },
+    { provide: TeamService, useClass: TeamService },
+    { provide: IsNotLogged, useClass: IsNotLogged },
+    { provide: CanAccessTeam, useClass: CanAccessTeam },
+    { provide: IsLogged, useClass: IsLogged },
+    { provide: canAccessAdminPanel, useClass: canAccessAdminPanel },
+    { provide: GetAllRolesResolver, useClass: GetAllRolesResolver },
+    { provide: GetAllUsersResolver, useClass: GetAllUsersResolver },
+    { provide: GetAllTeamsResolver, useClass: GetAllTeamsResolver },
+    { provide: GetTeamsByLoggedUserResolver, useClass: GetTeamsByLoggedUserResolver },
+    { provide: GetTeamByIdResolver, useClass: GetTeamByIdResolver },
     { provide: TicketService, useClass: TicketService },
     { provide: GetAllAssignToLogedUserResolver, useClass: GetAllAssignToLogedUserResolver },
-    {provide: TicketDetailsByIdResolver, useClass: TicketDetailsByIdResolver },
+    { provide: TicketDetailsByIdResolver, useClass: TicketDetailsByIdResolver },
+    { provide: GetAllTicketsOfTeamResolver, useClass: GetAllTicketsOfTeamResolver },
+
   ]
 })
 export class CoreModule { }

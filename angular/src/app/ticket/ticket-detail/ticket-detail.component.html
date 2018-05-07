@@ -1,6 +1,6 @@
 <mat-card *ngIf="ticket" class="ticket">
     <mat-card-header>
-      <mat-card-title> {{ticket.description}} </mat-card-title>
+      <mat-card-title class="title"> {{ticket.description}} </mat-card-title>
       <mat-card-subtitle> {{ticket.team.name}}</mat-card-subtitle>
       <mat-card-subtitle>{{ticket.importance.name}}</mat-card-subtitle>
       <mat-card-subtitle>{{ticket.status.name}}</mat-card-subtitle>
