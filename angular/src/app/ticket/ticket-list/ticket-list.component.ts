@@ -37,7 +37,7 @@ export class TicketListComponent implements OnInit {
 
   btnClicked(ticketId) {
     //  console.log(this.router.url+'/detail/'+ ticketId)
-    ; this.router.navigateByUrl(this.router.url + '/detail/' + ticketId);
+     this.router.navigateByUrl(this.router.url + '/detail/' + ticketId);
 
 
   }
