@@ -10,6 +10,8 @@ import { TicketRoutingModule } from './ticket-routing.module';
 import { TicketPanelComponent } from './ticket-panel/ticket-panel.component';
 import { TicketListComponent } from './ticket-list/ticket-list.component';
 import { TicketDetailComponent } from './ticket-detail/ticket-detail.component';
+import { TeamsModule } from '../teams/teams.module';
+
 
 @NgModule({
   imports: [
@@ -23,6 +25,7 @@ import { TicketDetailComponent } from './ticket-detail/ticket-detail.component';
     MatSortModule,
 
     TicketRoutingModule,
+    TeamsModule,
   ],
   declarations: [
     TicketPanelComponent,

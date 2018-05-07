@@ -26,9 +26,14 @@ export class TeamItemComponent implements OnInit {
   }
 
   btnClicked(teamId){
-    console.log(teamId);
-    this.router.navigateByUrl('/dashboard/team-panel/'+teamId);
+    const path = this.router.url.split('/');
 
+    if(path.includes('all-teams')) {
+      this.router.navigateByUrl('/dashboard/team-panel/'+teamId);
+    } else {
+      this.router.navigateByUrl(this.router.url + '/'+ teamId);
+    }
+  
   }
 
 

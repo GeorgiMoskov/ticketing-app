@@ -21,7 +21,7 @@ ticketServices.getAllTicketsOfTeam = async (teamId) => {
     if (!tickets) {
         return null;
     }
-    const teamTickets = tickets.find((ticket) => ticket.teamId = teamId);
+    const teamTickets = tickets.filter((ticket) => ticket.teamId && ticket.teamId === teamId);
 
     return teamTickets;
 };
@@ -31,7 +31,17 @@ ticketServices.getAllTicketsAssignTo = async (userId) => {
     if (!tickets) {
         return null;
     }
-    const userTickets = tickets.filter((ticket) => ticket.assignToId === userId);
+    const userTickets = tickets.filter((ticket) => ticket.assignToId && ticket.assignToId === userId);
+
+    return userTickets;
+}
+
+ticketServices.getAllTicketsRequester = async (userId) => {
+    const tickets = await ticketData.getAll();
+    if (!tickets) {
+        return null;
+    }
+    const userTickets = tickets.filter((ticket) =>  ticket.requesterId && ticket.requesterId === userId);
 
     return userTickets;
 }

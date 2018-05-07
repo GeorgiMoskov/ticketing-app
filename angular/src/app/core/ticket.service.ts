@@ -15,22 +15,34 @@ import { TicketDetail } from '../models/TicketDetail';
 @Injectable()
 export class TicketService {
 
-    private apiUrl = 'http://localhost:3001/api/tickets/';
 
     constructor(private router: Router, private http: HttpClient, private toastr: ToastrService) { }
 
     public getAllTickets() {  
-        return this.http.get<ResGeneric<Ticket[]>>(this.apiUrl+'all');
+        return this.http.get<ResGeneric<Ticket[]>>('http://localhost:3001/api/tickets/all');
     };
 
-    public getAllAssignTicketsOfLogedUser() {  
-        return this.http.get<ResGeneric<Ticket[]>>(this.apiUrl+'allAssignTo');
+    public getAllAssignTicketsOfLoggedUser() {  
+        return this.http.get<ResGeneric<Ticket[]>>('http://localhost:3001/api/tickets/allAssignTo');
     };
 
-    public getTicketDetailById(id: number) { 
-        const ticket = this.http.get<ResGeneric<TicketDetail>>(this.apiUrl + id);
+    public getTicketDetailById(ticketId) { 
+         const ticket = this.http.get<ResGeneric<TicketDetail>>('http://localhost:3001/api/tickets/detail/' + ticketId);
         return ticket;
     };
 
+    public getAllTicketsOfTeam(teamId) {
+        const tickets = this.http.get<ResGeneric<Ticket[]>>('http://localhost:3001/api/tickets/allOfTeam/' + teamId);
+        return tickets;
+    }
 
+    public getAllAssignTicketsOfLoggedUserInTeam(teamId) {
+        const tickets = this.http.get<ResGeneric<Ticket[]>>('http://localhost:3001/api/tickets/allAssignTo/team/' + teamId);
+        return tickets;
+    }
+
+    public getAllRequesterTicketsOfLoggedUser() {
+        const tickets = this.http.get<ResGeneric<Ticket[]>>('http://localhost:3001/api/tickets/requester');
+        return tickets;
+    }
 }

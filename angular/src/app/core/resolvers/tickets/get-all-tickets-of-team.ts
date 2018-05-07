@@ -1,5 +1,5 @@
 import { Injectable } from "@angular/core";
-import { Resolve } from "@angular/router";
+import { Resolve, ActivatedRouteSnapshot, RouterStateSnapshot, ActivatedRoute } from "@angular/router";
 import { Observable } from "rxjs/Observable";
 import { ToastrService } from "ngx-toastr";
 
@@ -8,10 +8,11 @@ import { TicketService } from "./../../ticket.service";
 import { Ticket } from './../../../models/Ticket';
 
 @Injectable()
-export class GetAllAssignToLogedUserResolver implements Resolve<Observable<ResGeneric<Ticket[]>>> {
+export class GetAllTicketsOfTeamResolver implements Resolve<Observable<ResGeneric<Ticket[]>>> {
     constructor(private ticketService: TicketService, private toastr: ToastrService) { }
 
-    resolve() {
-        return this.ticketService.getAllAssignTicketsOfLogedUser();
+    resolve(route: ActivatedRouteSnapshot) {
+    const id = route.paramMap.get('teamId');
+        return this.ticketService.getAllTicketsOfTeam(id);
     }
 }

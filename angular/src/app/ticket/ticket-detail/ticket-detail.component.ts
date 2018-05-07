@@ -1,10 +1,12 @@
-import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute, ActivatedRouteSnapshot, RouterStateSnapshot } from '@angular/router';
+import { Component, OnInit, Input } from '@angular/core';
+import { ActivatedRoute, ActivatedRouteSnapshot, RouterStateSnapshot, Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 
 import { TicketDetail } from '../../models/TicketDetail';
 import { TicketService } from '../../core/ticket.service';
 import { Validators } from '@angular/forms';
+import { ResGeneric } from '../../models/resGeneric';
+import { LocationStrategy } from '@angular/common';
 
 
 @Component({
@@ -15,32 +17,25 @@ import { Validators } from '@angular/forms';
 export class TicketDetailComponent implements OnInit {
 
   ticket: TicketDetail;
-  resError: string;
-  numberRegex = '/^\d+$/';
-
+ 
   constructor(private ticketService: TicketService,
-    private route: ActivatedRoute, private toastr: ToastrService) { }
+    private route: ActivatedRoute, private toastr: ToastrService, private url: LocationStrategy, private router: Router) { }
+
 
   ngOnInit() {
-    this.getTicket();
+    this.initResData();
   }
 
-  getTicket(): void {
 
-    const id = this.route.snapshot.paramMap.get('id');
+  initResData() {
 
-    const val = Number.isInteger(+id);
+    const resData: ResGeneric<TicketDetail> = this.route.snapshot.data['ticket'];
 
-    console.log(val);
-    if (val) {
-      this.ticketService.getTicketDetailById(+id)
-        .subscribe((data) => {
-          this.ticket = data.data;
-          this.resError = data.error;
-        });
-
+    if (resData.error) {
+      this.toastr.error(resData.error, '', { closeButton: true });
+    } else {
+      this.ticket = resData.data;
     }
 
   }
-
 }
