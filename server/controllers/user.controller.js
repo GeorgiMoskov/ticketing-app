@@ -113,39 +113,38 @@ const init = () => {
 
     const addTeamToUser = () => {
         return async (req, res) => {
-            const userEmail = req.body.userEmail;
+            const userId = +req.body.userId;
+            const teamId = +req.body.teamId;
 
-            try{
-               const userObj = await userServices.getUserByEmail(userEmail);
+            try{ 
+            await userServices.addTeamToUser(userId, teamId);
             } catch(err){
                 return res.send({
-                    error: err,
+                    error: "Error while adding user",
                 })
             }
 
-            if(!userObj){
-                return res.send({
-                    error: "This user doesn't exist",
-                })
-            }
-
-            try{
-                const teamObj = await teamServices.getUserByEmail(userEmail);
-             } catch(err){
-                 return res.send({
-                     error: err,
-                 })
-             }
- 
-             if(!userObj){
-                 return res.send({
-                     error: "This user doesn't exist",
-                 })
-             }
-             
-            await userServices.addTeamToUser()
             return res.send({
-                data: req.user
+                data: "User Added to team"
+            });
+        }
+    };
+
+    const removeUserFromTeam = () => {
+        return async (req, res) => {
+            const userId = +req.body.userId;
+            const teamId = +req.body.teamId;
+
+            try{ 
+            await userServices.removeUserFromTeam(userId, teamId);
+            } catch(err){
+                return res.send({
+                    error: "Error while removing user from team",
+                })
+            }
+
+            return res.send({
+                data: "User Removed from team"
             });
         }
     };
@@ -156,7 +155,9 @@ const init = () => {
         getAllUsers,
         getLogedUserInfo,
         getAllUsersOfTeam,
-        deleteUsersById
+        deleteUsersById,
+        addTeamToUser,
+        removeUserFromTeam
     }
 
 }

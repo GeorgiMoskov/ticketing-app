@@ -114,6 +114,32 @@ class UsersData extends Data {
         return user;
     }
 
+    async removeUserFromTeam(userId,teamId){
+        let userSequelize = await this.Model.findOne({
+            where: {
+                id: userId,
+            },
+            include: this.includes,
+        });
+
+        if (!userSequelize) {
+            return null;
+        }
+
+        const isRemoved = await userSequelize.removeTeam(teamId);
+        if(isRemoved<=0 || !isRemoved){
+            return null;
+        }
+        
+        const user = await this.getById(userId);
+        console.log('after deelte user: ');
+        console.log(user);
+        return user;
+
+
+
+    }
+
 
 }
 

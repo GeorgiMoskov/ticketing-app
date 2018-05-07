@@ -83,7 +83,7 @@ const init = () => {
                     error: `User with id ${user.id} is not in any team`,
                 });
             }
-            
+
             return res.send({
                 data: allTeams
             });
@@ -151,8 +151,8 @@ const init = () => {
                     error: err,
                 })
             }
-            
-            
+
+
 
             try {
                 await userServices.addTeamToUser(createdTeam.teamLeaderId, createdTeam.id);
@@ -171,14 +171,34 @@ const init = () => {
         }
     };
 
+    const setTeamLeader = () => {
+        return async (req, res) => {
+            const userId = req.body.userId;
+            const teamId = req.body.teamId;
+
+            try {
+                await teamServices.updateTeamLeader(+userId, +teamId);
+            } catch (err) {
+                return res.send({
+                    error: "There was error while setting new team leader"
+                })
+            }
+
+            return res.send({
+                data: "new team leader is set",
+            })
+
+        };
+    }
+
     return {
         getAllTeams,
         getTeamsByUserId,
         getTeamById,
         getTeamsByLogedUser,
-        createTeam
+        createTeam,
+        setTeamLeader
     }
-
 };
 
 module.exports = {

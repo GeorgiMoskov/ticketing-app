@@ -151,6 +151,26 @@ userServices.addTeamToUser = async (userId, teamId) => {
     return user;
 }
 
+userServices.removeUserFromTeam = async(userId, teamId) =>{
+    if(!await userData.getById(userId)){
+        throw "This user doesn't exist";
+    }
+
+    if(!await teamServices.getTeamById(teamId)){
+        throw "This team doesn't exist";
+    }
+
+    const userIfAsociationRemoved = await userData.removeUserFromTeam(userId, teamId);
+    if(!userIfAsociationRemoved){
+        throw "this user doesn't have this team"
+    } 
+
+    return userIfAsociationRemoved;
+
+
+
+}
+
 module.exports = {
     userServices,
 }

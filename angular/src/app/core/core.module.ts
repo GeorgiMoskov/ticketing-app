@@ -21,6 +21,8 @@ import { GetTeamByIdResolver } from './resolvers/get-team-by-id.resolver';
 import { TicketService } from './ticket.service';
 import { GetAllAssignToLoggedUserResolver } from './resolvers/tickets/get-all-assign-to-logged-user-resolver';
 import { TicketDetailsByIdResolver } from './resolvers/tickets/ticket-details-by-id-resolver';
+import { CanEditTeam } from './guards/can-edit-team';
+import { TeamDataCommunication } from './team-service-communication/team-data-communication';
 import { GetAllTicketsOfTeamResolver } from './resolvers/tickets/get-all-tickets-of-team';
 import { GetAllAssignToTicketsOfLoggedUserInTeamResolver } from './resolvers/tickets/get-all-assign-to-logged-user-in-team-resolver';
 import { GetAllTicketsRequestedByLoggedUserResolver } from './resolvers/tickets/get-all-logged-user-requester-resolver';
@@ -45,19 +47,21 @@ export function tokenGetter() {
     ToastrModule.forRoot(),
   ],
   providers: [
-    { provide: AuthService, useClass: AuthService },
-    { provide: RoleService, useClass: RoleService },
-    { provide: UserService, useClass: UserService },
-    { provide: TeamService, useClass: TeamService },
-    { provide: IsNotLogged, useClass: IsNotLogged },
-    { provide: CanAccessTeam, useClass: CanAccessTeam },
-    { provide: IsLogged, useClass: IsLogged },
-    { provide: canAccessAdminPanel, useClass: canAccessAdminPanel },
-    { provide: GetAllRolesResolver, useClass: GetAllRolesResolver },
-    { provide: GetAllUsersResolver, useClass: GetAllUsersResolver },
-    { provide: GetAllTeamsResolver, useClass: GetAllTeamsResolver },
-    { provide: GetTeamsByLoggedUserResolver, useClass: GetTeamsByLoggedUserResolver },
-    { provide: GetTeamByIdResolver, useClass: GetTeamByIdResolver },
+    {provide: AuthService, useClass: AuthService},
+    {provide: RoleService, useClass: RoleService},
+    {provide: UserService, useClass: UserService},
+    {provide: TeamService, useClass: TeamService},
+    {provide: IsNotLogged, useClass: IsNotLogged},
+    {provide: CanAccessTeam, useClass: CanAccessTeam},
+    CanEditTeam,
+    TeamDataCommunication,
+    {provide: IsLogged, useClass: IsLogged},
+    {provide: canAccessAdminPanel, useClass: canAccessAdminPanel},
+    {provide:GetAllRolesResolver, useClass: GetAllRolesResolver},
+    {provide:GetAllUsersResolver, useClass: GetAllUsersResolver},
+    {provide:GetAllTeamsResolver, useClass: GetAllTeamsResolver},
+    {provide:GetTeamsByLoggedUserResolver, useClass: GetTeamsByLoggedUserResolver},
+    {provide: GetTeamByIdResolver, useClass: GetTeamByIdResolver },
     { provide: TicketService, useClass: TicketService },
     { provide: GetAllAssignToLoggedUserResolver, useClass: GetAllAssignToLoggedUserResolver },
     { provide: TicketDetailsByIdResolver, useClass: TicketDetailsByIdResolver },

@@ -11,6 +11,7 @@ import {MatMenuModule} from '@angular/material/menu';
 import {MatTabsModule} from '@angular/material/tabs';
 import {MatSelectModule} from '@angular/material/select';
 import {MatTableModule, MatSortModule, MatDividerModule} from '@angular/material';
+import {MatDialogModule} from '@angular/material/dialog';
 
 
 @NgModule({
@@ -28,7 +29,8 @@ import {MatTableModule, MatSortModule, MatDividerModule} from '@angular/material
     MatSelectModule,
     MatTableModule,
     MatSortModule,
-    MatDividerModule
+    MatDividerModule,
+    MatDialogModule
     
     ],
     exports: [
@@ -45,7 +47,8 @@ import {MatTableModule, MatSortModule, MatDividerModule} from '@angular/material
     MatSelectModule,
     MatTableModule,
     MatSortModule,
-    MatDividerModule
+    MatDividerModule,
+    MatDialogModule
     ],
 })
 export class MaterialModule {};

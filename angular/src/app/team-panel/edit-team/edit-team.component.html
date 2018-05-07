@@ -1,3 +1,16 @@
 <p>
   edit-team works!
-</p>
+</p> 
+<!-- <button mat-button (click)="show" >Click me!</button> -->
+<button mat-raised-button (click)="openAddNewUser()">Add New User</button>
+<button mat-raised-button (click)="openRemoveUserFromTeam()">Remove User from this team</button>
+<button mat-raised-button (click)="openChangeTeamLeader()">Change team leader</button>
+<app-add-user-to-team [team] ="team" [users]="allUsers" *ngIf="showAddUserToTeam"></app-add-user-to-team>
+<app-remove-user-from-team [team] ="team" [users]="teamUsers" *ngIf="showRemoveUserFromTeam"></app-remove-user-from-team>
+<app-change-team-leader [team] ="team" [users]="teamUsers" *ngIf="showChangeTeamLeader"></app-change-team-leader>
+
+
+
+<!-- <a [routerLink]="['/']">
+  link to user component
+</a> -->
