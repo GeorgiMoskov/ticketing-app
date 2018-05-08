@@ -49,15 +49,15 @@ export class CreateTeamComponent implements OnInit {
      this.teamService.createTeam(teamToCreate).subscribe((resData: ResGeneric<string>) => {
       if(resData.error) {
         this.toastr.error(resData.error, '', {closeButton:true});
-        console.log(resData.error);
+     //   console.log(resData.error);
       } else {
         this.toastr.success('Team was created!', '', {closeButton:true});
       };
     }, 
     (err) => {
-      console.log(err);
+   //   console.log(err);
       this.toastr.error('Server Error, Please, try again or later!','', {closeButton:true});
-      console.log('Server Error, Please, try again or later!');
+    //  console.log('Server Error, Please, try again or later!');
     });
     }
   }

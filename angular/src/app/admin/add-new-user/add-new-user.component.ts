@@ -33,10 +33,10 @@ export class AddNewUserComponent implements OnInit {
 
   initRoles(){
     const resData: ResGeneric<Role[]> = this.route.snapshot.data['roles'];
-    console.log(resData);
+    // console.log(resData);
     if(resData.error) {
       this.toastr.error(resData.error, '', {closeButton:true});
-      console.log(resData.error);
+      // console.log(resData.error);
     }else {
       this.rolesNames = resData.data;
    };

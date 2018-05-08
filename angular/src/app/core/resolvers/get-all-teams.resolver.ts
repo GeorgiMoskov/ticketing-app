@@ -7,9 +7,7 @@ import {
 import {
   Observable
 } from "rxjs/Observable";
-import {
-  resTeams
-} from "../../models/resTeams";
+
 import {
   ToastrService
 } from "ngx-toastr";

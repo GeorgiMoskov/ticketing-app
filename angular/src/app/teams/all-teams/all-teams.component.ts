@@ -22,10 +22,10 @@ export class AllTeamsComponent implements OnInit {
 
   initAllTeams(){
     const resData:ResGeneric<Team[]> = this.route.snapshot.data['teams'];
-    console.log(resData);
+ //   console.log(resData);
     if(resData.error) {
       this.toastr.error(resData.error, '', {closeButton:true});
-      console.log(resData.error);
+    //  console.log(resData.error);
     }else {
      this.teams =resData.data;
    };

@@ -1,0 +1,55 @@
+<mat-card class="create-ticket-wrapper">
+  <mat-card-title>Create new ticket</mat-card-title>
+  <form [formGroup]="createTicketForm" (ngSubmit)="onSubmit()">
+    <mat-form-field>
+      <input matInput placeholder="Enter ticket description" formControlName="description">
+    </mat-form-field>
+
+    <mat-form-field class="user-select">
+      <mat-select placeholder="Select Requester" formControlName="requesterId">
+        <mat-option *ngFor="let user of users " value="{{ user.id }} ">
+          {{ user.firstName }} {{ user.lastName }}</mat-option>
+      </mat-select>
+    </mat-form-field>
+    <br>
+    <mat-form-field class="user-select">
+      <mat-select placeholder="Assign tucket to user" formControlName="assignToId">
+        <mat-option *ngFor="let user of users " value="{{ user.id }} ">{{ user.firstName }} {{ user.lastName }}</mat-option>
+      </mat-select>
+    </mat-form-field>
+
+    <mat-form-field class="user-select">
+      <mat-select placeholder="Select user for escalation contact" formControlName="escalationContactId">
+        <mat-option *ngFor="let user of users " value="{{ user.id }} ">{{ user.firstName }} {{ user.lastName }}</mat-option>
+      </mat-select>
+    </mat-form-field>
+    <br>
+    <mat-form-field class="team-select">
+      <mat-select placeholder="Select Team" formControlName="teamId">
+        <mat-option *ngFor="let team of teams " value="{{ team.id }} ">{{ team.name }} </mat-option>
+      </mat-select>
+    </mat-form-field>
+
+
+    <mat-form-field class="status-select">
+      <mat-select placeholder="Select Status" formControlName="statusId">
+        <mat-option *ngFor="let status of statuses " value="{{ status.id }} ">{{ status.name }} </mat-option>
+      </mat-select>
+    </mat-form-field>
+    <br>
+    <mat-form-field class="importance-select">
+      <mat-select placeholder="Select Importance of ticket" formControlName="importanceId">
+        <mat-option *ngFor="let importance of importances " value="{{ importance.id }} ">{{ importance.name }} </mat-option>
+      </mat-select>
+   </mat-form-field>
+
+    <mat-form-field class="date-select">
+      <input matInput [matDatepicker]="myDatepicker" placeholder="Pick up ticket deadline " (dateChange)="dateInput($event.value)">
+      <mat-datepicker-toggle matSuffix [for]="myDatepicker"></mat-datepicker-toggle>
+      <mat-datepicker #myDatepicker></mat-datepicker>
+   </mat-form-field>
+    <br>
+    <button mat-raised-button  color="primary" type="submit">Create new ticket</button>
+  </form>
+
+</mat-card>

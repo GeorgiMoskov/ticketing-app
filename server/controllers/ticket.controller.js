@@ -10,6 +10,13 @@ const {
     teamServices,
 } = require('./../service_layer/team.services');
 
+const {
+    statusServices,
+} = require('./../service_layer/status.services');
+
+const {
+    importanceServices,
+} = require('./../service_layer/importance.services');
 
 const init = () => {
 
@@ -251,6 +258,101 @@ const init = () => {
         }
     }
 
+    const createTicket = () => {
+        return async (req, res) => {
+
+            const ticketData = req.body;
+            const ticketToCreate = {};
+
+            if (!ticketData.description) {
+                return res.send({
+                    error: "Description of the ticket is required.",
+                });
+            }
+            ticketToCreate.description = ticketData.description;
+
+            if (!ticketData.deadLine) {
+                return res.send({
+                    error: "Deadline of the ticket is required.",
+                });
+            }
+
+            ticketToCreate.deadLine = ticketData.deadLine;
+
+            if (ticketData.requesterId) {
+
+                // if (!validator.isInt(ticketData.requesterId) || !await userServices.isSuchUser(+ticketData.requesterId)) {
+                //     return res.send({
+                //         error: "This requester doesn't exist",
+                //     });
+                // }
+                ticketToCreate.requesterId = +ticketData.requesterId;
+            }
+
+            if (ticketData.escalationContactId) {
+
+                // if (!validator.isInt(ticketData.escalationContactId) || !await userServices.isSuchUser(+ticketData.escalationContactId)) {
+                //     return res.send({
+                //         error: "This User for escalation constact doesn't exist.",
+                //     });
+                // }
+                ticketToCreate.escalationContactId = +ticketData.escalationContactId;
+            }
+
+
+            if (ticketData.assignToId) {
+
+                // if (!validator.isInt(ticketData.assignToId) || !await userServices.isSuchUser(+ticketData.assignToId)) {
+                //     return res.send({
+                //         error: "User to whom is the ticket assign doesn't exist.",
+                //     });
+                // }
+                ticketToCreate.assignToId = +ticketData.assignToId;
+            }
+
+            if (ticketData.teamId) {
+            //     return res.send({
+            //         error: "Ticket must be refer to a team.",
+            //     });
+            // } else {
+            //     if (!validator.isInt(ticketData.teamId) || !await teamServices.isSuchTeam(+ticketData.teamId)) {
+            //         return res.send({
+            //             error: `Team with id ${ticketData.teamId} doesn't exist.`,
+            //         });
+            //     }
+                ticketToCreate.teamId = +ticketData.teamId;
+            }
+
+            if (ticketData.statusId) {
+            //     return res.send({
+            //         error: "Ticket status must be set.",
+            //     });
+            // } else {
+            //     if (!validator.isInt(ticketData.statusId) || !await statusServices.isSuchStatus(+ticketData.statusId)) {
+            //         return res.send({
+            //             error: `Team with id ${ticketData.statusId} doesn't exist.`,
+            //         });
+            //     }
+                ticketToCreate.teamId = +ticketData.teamId;
+            }
+            if (ticketData.inportanceId) {
+            //     return res.send({
+            //         error: "Ticket status must be set.",
+            //     });
+            // } else {
+            //     if (!validator.isInt(ticketData.inportanceId) || !await statusServices.isSuchStatus(+ticketData.inportanceId)) {
+            //         return res.send({
+            //             error: `Team with id ${ticketData.statusId} doesn't exist.`,
+            //         });
+            //     }
+                ticketToCreate.teamId = +ticketData.teamId;
+            }
+            
+   
+        }
+    };
+
+
     return {
         getAllTickets,
         getAllTicketsOfTeam,
@@ -259,7 +361,8 @@ const init = () => {
         getAssignToUser,
         getAssignToUserOfTeam,
         getTicketById,
-        getAllTicketsRequester
+        getAllTicketsRequester,
+        createTicket
     }
 };
 module.exports = {

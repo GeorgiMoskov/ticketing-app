@@ -162,11 +162,11 @@ const init = () => {
                 })
             }
 
-            console.log(await teamServices.getTeamById(createdTeam.id)); // ? 
+         //   console.log(await teamServices.getTeamById(createdTeam.id)); // ? 
 
             return res.send({
                 message: "Team is Created",
-            })
+            });
 
         }
     };

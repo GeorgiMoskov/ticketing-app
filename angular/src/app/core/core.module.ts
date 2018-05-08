@@ -26,6 +26,10 @@ import { TeamDataCommunication } from './team-service-communication/team-data-co
 import { GetAllTicketsOfTeamResolver } from './resolvers/tickets/get-all-tickets-of-team';
 import { GetAllAssignToTicketsOfLoggedUserInTeamResolver } from './resolvers/tickets/get-all-assign-to-logged-user-in-team-resolver';
 import { GetAllTicketsRequestedByLoggedUserResolver } from './resolvers/tickets/get-all-logged-user-requester-resolver';
+import { GetAllStatusResolver } from './resolvers/get-all-statuses-resolver';
+import { StatusService } from './status.service';
+import { ImportanceService } from './importance.services';
+import { GetAllImportanceResolver } from './resolvers/get-all-importances-resolver';
 
 
 
@@ -68,6 +72,11 @@ export function tokenGetter() {
     { provide: GetAllTicketsOfTeamResolver, useClass: GetAllTicketsOfTeamResolver },
     { provide: GetAllAssignToTicketsOfLoggedUserInTeamResolver, useClass: GetAllAssignToTicketsOfLoggedUserInTeamResolver },
     { provide: GetAllTicketsRequestedByLoggedUserResolver, useClass: GetAllTicketsRequestedByLoggedUserResolver },
+    { provide: StatusService, useClass: StatusService },
+    { provide: GetAllStatusResolver, useClass: GetAllStatusResolver },
+    { provide: ImportanceService, useClass: ImportanceService },
+    { provide: GetAllImportanceResolver, useClass: GetAllImportanceResolver },
+    
   ]
 })
 export class CoreModule { }

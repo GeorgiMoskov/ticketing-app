@@ -15,7 +15,7 @@ module.exports = (sequelize, DataTypes) => {
     });
 
     Ticket.associate = function (models) {
-        // associations can be defined here
+
         const {
             User,
             Team,
@@ -26,7 +26,7 @@ module.exports = (sequelize, DataTypes) => {
         Ticket.belongsTo(User, {
             as: 'requester',
             foreignKey: {
-                allowNull: false,
+                allowNull: true,
             },
             onDelete: 'CASCADE',
         });
@@ -43,7 +43,7 @@ module.exports = (sequelize, DataTypes) => {
         Ticket.belongsTo(User, {
             as: 'escalationContact',
             foreignKey: {
-                allowNull: false,
+                allowNull: true,
             },
             onDelete: 'CASCADE',
         });
