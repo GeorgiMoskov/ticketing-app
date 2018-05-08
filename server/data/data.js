@@ -73,5 +73,6 @@ module.exports = {
             as: 'teamLeader'
         },
     ]),
-
+    importance: new Data(Importance),
+    status: new Data(Status),
 };

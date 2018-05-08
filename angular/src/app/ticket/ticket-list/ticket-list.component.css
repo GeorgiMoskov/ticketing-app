@@ -1,31 +1,20 @@
-.tickets {
+.ticket {
   margin: 10px;
   padding: 10px;
   border: 2px solid blue;
 }
-
-.example-card * {
-  display: block;
-  margin: 0 auto;
-  margin-top: 10px;
-  max-width: 100%;
-  word-wrap: break-word !important;
+.mat-card-header {
+  width: 80%;
+}
+.status, .importance {
+  width: 18%;
+  border: 1px solid;
 }
 
-.example-header-image {
-  background-image: url('https://material.angular.io/assets/img/examples/shiba1.jpg');
-  background-size: cover;
-}
-
-.title {
+.mat-card-title {
   font-size: 16px;
   font-weight: bold;
   color: #3f51b5;
-}
-
-.high-light {
-  color: #3f51b5;
-  font-size: 15px;
 }
 
 .view-btn {

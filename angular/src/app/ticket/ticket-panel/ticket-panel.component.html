@@ -8,17 +8,20 @@
   <a mat-tab-link [routerLink]=" 'allofteam' " routerLinkActive #link3="routerLinkActive" [active]="link3.isActive">
     Tickets in my teams 
   </a>
-  <a mat-tab-link [routerLink]=" 'assigntointeam' " routerLinkActive #link2="routerLinkActive" [active]="link2.isActive">
+  <a mat-tab-link [routerLink]=" 'assigntointeam' " routerLinkActive #link4="routerLinkActive" [active]="link4.isActive">
     Tickets assign to me in my teams 
   </a>
-  <a mat-tab-link [routerLink]=" 'requested' " routerLinkActive #link4="routerLinkActive" [active]="link4.isActive">
+  <a mat-tab-link [routerLink]=" 'requested' " routerLinkActive #link5="routerLinkActive" [active]="link5.isActive">
     Requested tickets 
+  </a>  
+  <!-- <a mat-tab-link [routerLink]=" 'requested' " routerLinkActive #link5="routerLinkActive" [active]="link5.isActive">
+    Contacts Tickets 
   </a>
-  <a mat-tab-link [routerLink]=" 'createticket' " routerLinkActive #link4="routerLinkActive" [active]="link4.isActive">
+ -->
+  <a mat-tab-link [routerLink]=" 'create' " routerLinkActive #link6="routerLinkActive" [active]="link6.isActive">
     New tickets 
   </a>
-  
-  
+
 </nav>
 
 <router-outlet></router-outlet>

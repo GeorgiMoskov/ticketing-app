@@ -78,9 +78,8 @@ export const ROUTES: Routes = [
                 resolve: {
                     statuses: GetAllStatusResolver,
                     importances: GetAllImportanceResolver,
-                    // users: GetAllUsersResolver, 
-                    //         teams: GetAllTeamsResolver,
-                    // ticket: TicketDetailsByIdResolver 
+                    users: GetAllUsersResolver, 
+                    teams: GetAllTeamsResolver,
                 }
             },
             { path: '', redirectTo: 'assignto' },

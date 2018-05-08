@@ -45,4 +45,9 @@ export class TicketService {
         const tickets = this.http.get<ResGeneric<Ticket[]>>('http://localhost:3001/api/tickets/requester');
         return tickets;
     }
+
+    public createTicket(ticketObj) {
+        return this.http.post<ResGeneric<string>>('http://localhost:3001/api/tickets/create', ticketObj);
+
+      }
 }

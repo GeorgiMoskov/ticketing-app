@@ -19,7 +19,22 @@ const {
 } = require('./../service_layer/importance.services');
 
 const init = () => {
+    const createTicket = () => {
+        return async (req, res) => {
+          const ticketrow = req.body;
+          console.log(ticketrow);
+            const ticket = await ticketServices.createTicket(req.body);
 
+            if (!ticket) {
+                return res.send({
+                    error: 'There is a problem'
+                });
+            }
+            return res.send({
+                message: 'You create ticket sucsessfully'
+            });
+        }
+    };
     const getAllTickets = () => {
         return async (req, res) => {
             if (!req.user.privileges.includes('canSeeAllTickets')) {
