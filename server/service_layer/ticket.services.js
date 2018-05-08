@@ -6,6 +6,16 @@ const {
 
 const ticketServices = {};
 
+ticketServices.createTicket = async (ticketobj) => {
+        const ticket = await ticketData.create(ticketobj);
+
+   if (!ticket) {
+        return null;
+    }
+    return tickets;
+}
+
+
 ticketServices.getAllTickets = async () => {
     const tickets = await ticketData.getAll();
 

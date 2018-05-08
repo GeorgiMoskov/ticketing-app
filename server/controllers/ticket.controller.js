@@ -19,22 +19,7 @@ const {
 } = require('./../service_layer/importance.services');
 
 const init = () => {
-    const createTicket = () => {
-        return async (req, res) => {
-          const ticketrow = req.body;
-          console.log(ticketrow);
-            const ticket = await ticketServices.createTicket(req.body);
 
-            if (!ticket) {
-                return res.send({
-                    error: 'There is a problem'
-                });
-            }
-            return res.send({
-                message: 'You create ticket sucsessfully'
-            });
-        }
-    };
     const getAllTickets = () => {
         return async (req, res) => {
             if (!req.user.privileges.includes('canSeeAllTickets')) {
@@ -296,60 +281,73 @@ const init = () => {
 
             if (ticketData.requesterId) {
 
-                if (!validator.isInt(ticketData.requesterId) || !await userServices.isSuchUser(+ticketData.requesterId)) {
-                    return res.send({
-                        error: "This requester doesn't exist",
-                    });
-                }
-                ticketToCreate.requesterId = ticketData.requesterId;
+                // if (!validator.isInt(ticketData.requesterId) || !await userServices.isSuchUser(+ticketData.requesterId)) {
+                //     return res.send({
+                //         error: "This requester doesn't exist",
+                //     });
+                // }
+                ticketToCreate.requesterId = +ticketData.requesterId;
             }
 
             if (ticketData.escalationContactId) {
 
-                if (!validator.isInt(ticketData.escalationContactId) || !await userServices.isSuchUser(+ticketData.escalationContactId)) {
-                    return res.send({
-                        error: "This User for escalation constact doesn't exist.",
-                    });
-                }
-                ticketToCreate.escalationContactId = ticketData.escalationContactId;
+                // if (!validator.isInt(ticketData.escalationContactId) || !await userServices.isSuchUser(+ticketData.escalationContactId)) {
+                //     return res.send({
+                //         error: "This User for escalation constact doesn't exist.",
+                //     });
+                // }
+                ticketToCreate.escalationContactId = +ticketData.escalationContactId;
             }
 
 
             if (ticketData.assignToId) {
 
-                if (!validator.isInt(ticketData.assignToId) || !await userServices.isSuchUser(+ticketData.assignToId)) {
-                    return res.send({
-                        error: "User to whom is the ticket assign doesn't exist.",
-                    });
-                }
-                ticketToCreate.assignToId = ticketData.assignToId;
+                // if (!validator.isInt(ticketData.assignToId) || !await userServices.isSuchUser(+ticketData.assignToId)) {
+                //     return res.send({
+                //         error: "User to whom is the ticket assign doesn't exist.",
+                //     });
+                // }
+                ticketToCreate.assignToId = +ticketData.assignToId;
             }
 
-            if (!ticketData.teamId) {
-                return res.send({
-                    error: "Ticket must be refer to a team.",
-                });
-            } else {
-                if (!validator.isInt(ticketData.teamId) || !await teamServices.isSuchTeam(+ticketData.teamId)) {
-                    return res.send({
-                        error: `Team with id ${ticketData.teamId} doesn't exist.`,
-                    });
-                }
-                ticketToCreate.teamId = ticketData.teamId;
+            if (ticketData.teamId) {
+            //     return res.send({
+            //         error: "Ticket must be refer to a team.",
+            //     });
+            // } else {
+            //     if (!validator.isInt(ticketData.teamId) || !await teamServices.isSuchTeam(+ticketData.teamId)) {
+            //         return res.send({
+            //             error: `Team with id ${ticketData.teamId} doesn't exist.`,
+            //         });
+            //     }
+                ticketToCreate.teamId = +ticketData.teamId;
             }
 
-            if (!ticketData.statusId) {
-                return res.send({
-                    error: "Ticket status must be set.",
-                });
-            } else {
-                if (!validator.isInt(ticketData.statusId) || !await statusServices.isSuchStatus(ticketData.statusId)) {
-                    return res.send({
-                        error: `Team with id ${ticketData.statusId} doesn't exist.`,
-                    });
-                }
-                ticketToCreate.teamId = ticketData.teamId;
+            if (ticketData.statusId) {
+            //     return res.send({
+            //         error: "Ticket status must be set.",
+            //     });
+            // } else {
+            //     if (!validator.isInt(ticketData.statusId) || !await statusServices.isSuchStatus(+ticketData.statusId)) {
+            //         return res.send({
+            //             error: `Team with id ${ticketData.statusId} doesn't exist.`,
+            //         });
+            //     }
+                ticketToCreate.teamId = +ticketData.teamId;
             }
+            if (ticketData.inportanceId) {
+            //     return res.send({
+            //         error: "Ticket status must be set.",
+            //     });
+            // } else {
+            //     if (!validator.isInt(ticketData.inportanceId) || !await statusServices.isSuchStatus(+ticketData.inportanceId)) {
+            //         return res.send({
+            //             error: `Team with id ${ticketData.statusId} doesn't exist.`,
+            //         });
+            //     }
+                ticketToCreate.teamId = +ticketData.teamId;
+            }
+            
    
         }
     };

@@ -2,12 +2,21 @@ const {
     importanceData,
 } = require('./../data');
 
-const importanceServices = () => {
+const importanceServices = {};
 
-    const isSushImportance = async (importanceId) => {
+importanceServices.isSushImportance = async (importanceId) => {
 
-        return await importanceData.isExistInDb(importanceId); 
+    return await importanceData.isExistInDb(importanceId);
+}
+
+importanceServices.getAllImportances = async () => {
+    const importances = await importanceData.getAllElements();
+
+    if (!importances) {
+        return null;
     }
+
+    return importances;
 }
 
 module.exports = {

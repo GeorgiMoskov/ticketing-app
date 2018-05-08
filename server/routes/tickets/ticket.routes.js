@@ -34,17 +34,16 @@ const init = (server, passport) => {
         session: false
     }), controller.getAllTicketsRequester());
 
-    router.get('detail/:ticketId', passport.authenticate('jwt', {
+    router.get('/detail/:ticketId', passport.authenticate('jwt', {
         session: false
     }), controller.getTicketById());
 
-    router.get('createTicket', passport.authenticate('jwt', {
+    router.post('/create', passport.authenticate('jwt', {
         session: false
     }), controller.createTicket());
 
 
-    
-    
+   
     server.use('/api/tickets', router);
 
 }

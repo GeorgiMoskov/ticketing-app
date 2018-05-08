@@ -2,13 +2,22 @@ const {
     statusData,
 } = require('./../data');
 
-const statusServices = () => {
+const statusServices = {};
 
-    const isSushStatus = async (statusId) => {
+statusServices.isSushStatus = async (statusId) => {
 
-        return await statusData.isExistInDb(statusId); 
-    }
+    return await statusData.isExistInDb(statusId);
 }
+
+statusServices.getAllStatuses = async () => {
+        const statuses = await statusData.getAllElements();
+
+        if (!statuses) {
+            return null;
+        }
+
+        return statuses;
+    }
 
 module.exports = {
     statusServices,
